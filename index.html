@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,82 +11,34 @@
 
 <body>
 
-    <!-- MÚSICA -->
-    <audio id="musica" preload="auto">
-        <source src="recursos/cancion.mp3" type="audio/mpeg">
-    </audio>
-
-
-    <!-- TRANSICIÓN CINEMATOGRÁFICA -->
-    <div id="cortina" class="cortina"></div>
-
+    <!-- CORTINA INICIAL -->
+    <div class="cortina" id="cortina"></div>
 
     <!-- =====================================================
          PORTADA
     ====================================================== -->
+    <main class="portada" id="portada">
 
-    <main id="inicio" class="pantalla inicio">
+        <div class="brillos"></div>
 
-        <div class="brillo brillo1"></div>
-        <div class="brillo brillo2"></div>
-        <div class="brillo brillo3"></div>
+        <div class="contenido-portada">
 
-        <div class="particulas" id="particulas"></div>
-
-
-        <div class="contenido-inicio">
-
-            <p class="fecha">
-                21 DE SEPTIEMBRE
-            </p>
+            <p class="fecha">21 DE SEPTIEMBRE</p>
 
             <h1 class="titulo">
                 Feliz día de las flores amarillas
-                <span>Marí</span>
+                <span>Mari</span>
             </h1>
 
-
-            <!-- TEXTO ANIMADO -->
-
-            <p
-                id="subtituloAnimado"
-                class="subtitulo subtitulo-animado">
-            </p>
-
-
-            <!-- RAMO -->
-
-            <div
-                id="ramoInicio"
-                class="contenedor-ramo ramo-inicio-oculto">
-
-                <div class="resplandor-ramo"></div>
-
-                <img
-                    src="recursos/ramo.png"
-                    alt="Ramo de flores para Mari"
-                    class="ramo"
-                >
-
+            <div class="ramo-portada">
+                <img src="recursos/ramo.png" alt="Ramo de flores">
             </div>
 
+            <p class="subtitulo" id="textoPortada"></p>
 
-            <!-- BOTÓN -->
-
-            <button
-                id="btnDetalle"
-                class="btn-detalle">
-
-                <span>◇</span>
-                Ver detalle
-                <span>◇</span>
-
+            <button class="btn-iniciar" id="btnIniciar">
+                ◇ Ver detalle ◇
             </button>
-
-
-            <p class="indicacion">
-                Toca para comenzar
-            </p>
 
         </div>
 
@@ -97,63 +48,36 @@
     <!-- =====================================================
          PRESENTACIÓN
     ====================================================== -->
+    <main class="detalle" id="detalle">
 
-    <section id="detalle" class="detalle oculto">
+        <div class="luz-final" id="luzFinal"></div>
 
-
-        <!-- ILUMINACIÓN -->
-
-        <div
-            id="luzPresentacion"
-            class="luz-presentacion">
-        </div>
-
-
-        <!-- PARTÍCULAS -->
-
-        <div
-            id="particulasDetalle"
-            class="particulas-detalle">
-        </div>
-
-
-        <!-- PÉTALOS -->
-
-        <div
-            id="petalos"
-            class="petalos">
+        <!-- PARTÍCULAS GENERALES -->
+        <div class="particulas">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
 
         <!-- =================================================
-             INTRODUCCIÓN
+             INTRO
         ================================================== -->
-
-        <section
-            id="escenaIntro"
-            class="escena escena-intro">
+        <section class="escena escena-intro activa" id="escenaIntro">
 
             <div class="contenido-escena">
 
-                <h2 class="titulo-detalle">
-
+                <h2>
                     Un pequeño detalle
-
-                    <span>
-                        para tí
-                    </span>
-
+                    <span>para ti</span>
                 </h2>
 
-
-                <div class="linea-dorada"></div>
-
-
-                <!-- TEXTO ESCRITO PROGRESIVAMENTE -->
-
                 <p
-                    id="textoIntro"
-                    class="texto-intro texto-escribiendo">
+                    class="texto-escritura-intro"
+                    id="textoIntro">
                 </p>
 
             </div>
@@ -164,37 +88,24 @@
         <!-- =================================================
              FOTO 1
         ================================================== -->
+        <section class="escena escena-foto escena-foto1" id="escenaFoto1">
 
-        <section
-            id="escenaFoto1"
-            class="escena escena-foto">
+            <div class="contenido-escena">
 
-            <div class="contenido-foto">
+                <h2 class="titulo-foto">
+                    Un bonito recuerdo
+                </h2>
 
-                <div class="marco-foto">
-
+                <div class="marco-foto marco-foto1">
                     <img
                         src="recursos/foto1.png"
-                        alt="Un bonito recuerdo"
-                        class="foto foto1"
-                    >
-
+                        alt="Un bonito recuerdo">
                 </div>
 
-
-                <div class="texto-recuerdo">
-
-                    <h2>
-                        Un bonito recuerdo
-                    </h2>
-
-                    <p>
-                        Hay momentos que se vuelven especiales
-                        simplemente por compartirlos con
-                        una persona especial.
-                    </p>
-
-                </div>
+                <p class="descripcion-foto">
+                    Hay momentos que se vuelven especiales
+                    simplemente por compartirlos con una persona especial.
+                </p>
 
             </div>
 
@@ -202,37 +113,20 @@
 
 
         <!-- =================================================
-             FOTO 2
+             FOTO 2 - NUEVA
         ================================================== -->
+        <section class="escena escena-foto escena-foto2" id="escenaFoto2">
 
-        <section
-            id="escenaFoto2"
-            class="escena escena-foto">
+            <div class="contenido-escena">
 
-            <div class="contenido-foto foto-invertida">
+                <h2 class="titulo-foto">
+                    Un bonito momento
+                </h2>
 
-                <div class="texto-recuerdo">
-
-                    <h2>
-                        Momentos para recordar
-                    </h2>
-
-                    <p>
-                        Algunos recuerdos merecen quedarse
-                        guardados para siempre.
-                    </p>
-
-                </div>
-
-
-                <div class="marco-foto">
-
+                <div class="marco-foto marco-foto2">
                     <img
                         src="recursos/foto2.png"
-                        alt="Momentos para recordar"
-                        class="foto foto2"
-                    >
-
+                        alt="Un bonito momento">
                 </div>
 
             </div>
@@ -241,50 +135,78 @@
 
 
         <!-- =================================================
-             FRASE + TULIPANES
+             FOTO 3 - ANTES ERA FOTO 2
         ================================================== -->
+        <section class="escena escena-foto escena-foto3" id="escenaFoto3">
 
-        <section
-            id="escenaTulipanes"
-            class="escena escena-tulipanes">
+            <div class="contenido-escena">
 
-            <div class="contenido-tulipanes">
+                <h2 class="titulo-foto">
+                    Momentos para recordar
+                </h2>
+
+                <div class="marco-foto marco-foto3">
+                    <img
+                        src="recursos/foto3.png"
+                        alt="Momentos para recordar">
+                </div>
+
+                <p class="descripcion-foto">
+                    Algunos recuerdos merecen quedarse
+                    guardados para siempre.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FRASE DE DISTANCIA
+        ================================================== -->
+        <section class="escena escena-distancia" id="escenaDistancia">
+
+            <div class="contenido-escena">
+
+                <p
+                    class="frase-distancia"
+                    id="fraseDistancia">
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TULIPANES
+        ================================================== -->
+        <section class="escena escena-tulipanes" id="escenaTulipanes">
+
+            <!-- PÉTALOS -->
+            <div class="petalos">
+
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+                <span>❋</span>
+
+            </div>
+
+            <div class="contenido-escena">
 
                 <p class="mini-titulo">
                     FLORES AMARILLAS
                 </p>
 
-
-                <!-- FRASE -->
-
-                <div class="zona-frase">
-
-                    <p
-                        id="fraseDistancia"
-                        class="frase-distancia">
-                    </p>
-
-                </div>
-
-
-                <!-- TULIPANES -->
-
-                <div
-                    id="grupoTulipanes"
-                    class="grupo-tulipanes tulipanes-ocultos">
-
-                    <div class="contenedor-tulipanes">
-
-                        <div class="resplandor-tulipanes"></div>
-
-                        <img
-                            src="recursos/tulipanes.png"
-                            alt="Tulipanes amarillos"
-                            class="tulipanes"
-                        >
-
-                    </div>
-
+                <div class="tulipanes">
+                    <img
+                        src="recursos/tulipanes.png"
+                        alt="Tulipanes amarillos">
                 </div>
 
             </div>
@@ -295,88 +217,53 @@
         <!-- =================================================
              FINAL
         ================================================== -->
+        <section class="escena escena-final" id="escenaFinal">
 
-        <section
-            id="escenaFinal"
-            class="escena escena-final">
+            <div class="contenido-escena">
 
-            <div class="mensaje-final">
+                <h2>Para María</h2>
 
-                <div class="linea-decorativa"></div>
+                <p
+                    class="texto-final"
+                    id="textoFinal">
+                </p>
 
-
-                <h2>
-                    Para María
-                </h2>
-
-
-                <p id="textoFinal"></p>
-
-
-                <!-- CORAZÓN -->
-
-                <div
-                    id="corazonFinal"
-                    class="elemento-final oculto-final">
-
-                    <span class="corazon">
-                        ♡
-                    </span>
-
+                <div class="corazon-final" id="corazonFinal">
+                    ♡
                 </div>
 
+                <div class="firma" id="firma">
 
-                <!-- FIRMA -->
+                    <span>Con cariño</span>
 
-                <div
-                    id="firmaFinal"
-                    class="firma elemento-final oculto-final">
-
-                    <span>
-                        Con cariño
-                    </span>
-
-
-                    <div class="firma-nombre">
-
-                        <strong
-                            id="nombreCesar"
-                            class="nombre-cesar">
-
-                            César
-
-                        </strong>
-
-
-                        <div
-                            id="lineaFirma"
-                            class="linea-firma">
-                        </div>
-
-                    </div>
+                    <strong>César</strong>
 
                 </div>
-
-
-                <!-- VOLVER -->
 
                 <button
-                    id="btnVolver"
-                    class="btn-volver elemento-final oculto-final">
-
+                    class="btn-volver"
+                    id="btnVolver">
                     ↻ Volver a ver
-
                 </button>
 
             </div>
 
         </section>
 
-    </section>
+    </main>
+
+
+    <!-- =====================================================
+         MÚSICA
+    ====================================================== -->
+    <audio
+        id="musica"
+        src="recursos/cancion.mp3"
+        preload="auto">
+    </audio>
 
 
     <script src="js/script.js"></script>
 
 </body>
-
 </html>

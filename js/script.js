@@ -1,807 +1,813 @@
 /* =====================================================
-   ELEMENTOS
+   ESPERAR A QUE CARGUE TODO EL HTML
 ===================================================== */
 
-const portada = document.getElementById("portada");
-const detalle = document.getElementById("detalle");
+document.addEventListener("DOMContentLoaded", function () {
 
-const btnIniciar = document.getElementById("btnIniciar");
-const btnVolver = document.getElementById("btnVolver");
+    /* =====================================================
+       ELEMENTOS
+    ====================================================== */
 
-const musica = document.getElementById("musica");
+    const portada = document.getElementById("portada");
+    const detalle = document.getElementById("detalle");
 
-const textoPortada = document.getElementById("textoPortada");
-const textoIntro = document.getElementById("textoIntro");
+    const btnIniciar = document.getElementById("btnIniciar");
+    const btnVolver = document.getElementById("btnVolver");
 
-const escenaIntro = document.getElementById("escenaIntro");
-const escenaFoto1 = document.getElementById("escenaFoto1");
-const escenaFoto2 = document.getElementById("escenaFoto2");
-const escenaFoto3 = document.getElementById("escenaFoto3");
-const escenaDistancia = document.getElementById("escenaDistancia");
-const escenaTulipanes = document.getElementById("escenaTulipanes");
-const escenaFinal = document.getElementById("escenaFinal");
+    const musica = document.getElementById("musica");
 
-const fraseDistancia = document.getElementById("fraseDistancia");
+    const textoPortada = document.getElementById("textoPortada");
+    const textoIntro = document.getElementById("textoIntro");
 
-const textoFinal = document.getElementById("textoFinal");
+    const escenaIntro = document.getElementById("escenaIntro");
+    const escenaFoto1 = document.getElementById("escenaFoto1");
+    const escenaFoto2 = document.getElementById("escenaFoto2");
+    const escenaFoto3 = document.getElementById("escenaFoto3");
+    const escenaDistancia = document.getElementById("escenaDistancia");
+    const escenaTulipanes = document.getElementById("escenaTulipanes");
+    const escenaFinal = document.getElementById("escenaFinal");
 
-const corazonFinal = document.getElementById("corazonFinal");
-const firma = document.getElementById("firma");
+    const fraseDistancia = document.getElementById("fraseDistancia");
+    const textoFinal = document.getElementById("textoFinal");
 
-const luzFinal = document.getElementById("luzFinal");
+    const corazonFinal = document.getElementById("corazonFinal");
+    const firma = document.getElementById("firma");
+    const luzFinal = document.getElementById("luzFinal");
 
 
-/* =====================================================
-   TEXTOS
-===================================================== */
+    /* =====================================================
+       TEXTOS
+    ====================================================== */
 
-const mensajePortada =
-    "Estas flores son para ti.";
+    const mensajePortada =
+        "Estas flores son para ti.";
 
-const mensajeIntro =
-    "Algunos momentos merecen quedarse para siempre.";
+    const mensajeIntro =
+        "Algunos momentos merecen quedarse para siempre.";
 
-const mensajeDistancia =
-    "La distancia puede cambiar muchas cosas, pero no las ganas de sorprenderte con un pequeño detalle en un día como hoy. 💛";
+    const mensajeDistancia =
+        "La distancia puede cambiar muchas cosas, pero no las ganas de sorprenderte con un pequeño detalle en un día como hoy. 💛";
 
-const mensajeFinal =
-    "Espero que este pequeño detalle te saque una sonrisa. " +
-    "Que nunca te falten motivos para sonreír, momentos bonitos " +
-    "para recordar y personas que hagan tus días un poquito más especiales. " +
-    "Estas flores amarillas son para ti. 💛";
+    const mensajeFinal =
+        "Espero que este pequeño detalle te saque una sonrisa. " +
+        "Que nunca te falten motivos para sonreír, momentos bonitos " +
+        "para recordar y personas que hagan tus días un poquito más especiales. " +
+        "Estas flores amarillas son para ti. 💛";
 
 
-/* =====================================================
-   TIEMPOS
-===================================================== */
+    /* =====================================================
+       TIEMPOS
+    ====================================================== */
 
-const tiempoIntro = 5200;
+    const tiempoIntro = 5200;
+    const tiempoFoto1 = 6500;
+    const tiempoFoto2 = 6500;
+    const tiempoFoto3 = 6500;
+    const tiempoDistancia = 6500;
+    const tiempoTulipanes = 8000;
 
-const tiempoFoto1 = 6500;
+    const velocidadPortada = 70;
+    const velocidadIntro = 60;
+    const velocidadFinal = 38;
+    const velocidadPalabra = 180;
 
-/* NUEVA FOTO 2 */
-const tiempoFoto2 = 6500;
 
-/* FOTO QUE ANTES ERA FOTO 2 */
-const tiempoFoto3 = 6500;
+    /* =====================================================
+       ESTADO
+    ====================================================== */
 
-const tiempoDistancia = 6500;
-const tiempoTulipanes = 8000;
+    let presentacionIniciada = false;
+    let pausado = false;
 
-const velocidadPortada = 70;
-const velocidadIntro = 60;
-const velocidadFinal = 38;
-const velocidadPalabra = 180;
+    let tareas = [];
 
+    let posicionIntro = 0;
+    let escribiendoIntro = false;
 
-/* =====================================================
-   ESTADO
-===================================================== */
+    let posicionFinal = 0;
+    let escribiendoFinal = false;
 
-let presentacionIniciada = false;
-let pausado = false;
+    let indicePalabra = 0;
+    let escribiendoDistancia = false;
 
-let tareas = [];
+    let intervaloPortada = null;
 
-let posicionIntro = 0;
-let escribiendoIntro = false;
 
-let posicionFinal = 0;
-let escribiendoFinal = false;
+    /* =====================================================
+       TEXTO PORTADA
+    ====================================================== */
 
-let indicePalabra = 0;
-let escribiendoDistancia = false;
+    function escribirPortada() {
 
-let intervaloPortada = null;
+        textoPortada.textContent = "";
 
+        let posicion = 0;
 
-/* =====================================================
-   TEXTO PORTADA
-===================================================== */
+        clearInterval(intervaloPortada);
 
-function escribirPortada() {
+        intervaloPortada = setInterval(function () {
 
-    textoPortada.textContent = "";
+            if (posicion < mensajePortada.length) {
 
-    let posicion = 0;
+                textoPortada.textContent +=
+                    mensajePortada.charAt(posicion);
 
-    clearInterval(intervaloPortada);
+                posicion++;
 
-    intervaloPortada = setInterval(function () {
+            } else {
 
-        if (posicion < mensajePortada.length) {
+                clearInterval(intervaloPortada);
+            }
 
-            textoPortada.textContent +=
-                mensajePortada.charAt(posicion);
+        }, velocidadPortada);
+    }
 
-            posicion++;
 
-        } else {
+    /* =====================================================
+       PROGRAMADOR DE TAREAS
+    ====================================================== */
 
-            clearInterval(intervaloPortada);
-        }
+    function esperar(funcion, tiempo) {
 
-    }, velocidadPortada);
-}
+        const tarea = {
 
+            funcion: funcion,
+            restante: tiempo,
+            inicio: Date.now(),
+            id: null,
+            terminada: false
 
-/* =====================================================
-   PROGRAMADOR DE TAREAS
-   Permite pausar y continuar la presentación
-===================================================== */
+        };
 
-function esperar(funcion, tiempo) {
+        tarea.id = setTimeout(function () {
 
-    const tarea = {
+            tarea.terminada = true;
+            funcion();
 
-        funcion: funcion,
-        restante: tiempo,
-        inicio: Date.now(),
-        id: null,
-        terminada: false
+        }, tiempo);
 
-    };
+        tareas.push(tarea);
 
-    tarea.id = setTimeout(function () {
+        return tarea;
+    }
 
-        tarea.terminada = true;
 
-        funcion();
+    /* =====================================================
+       PAUSAR TAREAS
+    ====================================================== */
 
-    }, tiempo);
+    function pausarTareas() {
 
-    tareas.push(tarea);
+        const ahora = Date.now();
 
-    return tarea;
-}
+        tareas.forEach(function (tarea) {
 
+            if (!tarea.terminada && tarea.id !== null) {
 
-/* =====================================================
-   PAUSAR TAREAS
-===================================================== */
+                clearTimeout(tarea.id);
 
-function pausarTareas() {
+                const transcurrido =
+                    ahora - tarea.inicio;
 
-    const ahora = Date.now();
+                tarea.restante =
+                    Math.max(
+                        0,
+                        tarea.restante - transcurrido
+                    );
 
-    tareas.forEach(function (tarea) {
+                tarea.id = null;
+            }
+        });
+    }
 
-        if (!tarea.terminada && tarea.id !== null) {
 
-            clearTimeout(tarea.id);
+    /* =====================================================
+       REANUDAR TAREAS
+    ====================================================== */
 
-            const transcurrido =
-                ahora - tarea.inicio;
+    function reanudarTareas() {
 
-            tarea.restante =
-                Math.max(
-                    0,
-                    tarea.restante - transcurrido
-                );
+        tareas.forEach(function (tarea) {
 
-            tarea.id = null;
-        }
-    });
-}
+            if (!tarea.terminada && tarea.id === null) {
 
+                tarea.inicio = Date.now();
 
-/* =====================================================
-   REANUDAR TAREAS
-===================================================== */
+                tarea.id = setTimeout(function () {
 
-function reanudarTareas() {
+                    tarea.terminada = true;
+                    tarea.funcion();
 
-    tareas.forEach(function (tarea) {
+                }, tarea.restante);
+            }
+        });
+    }
 
-        if (!tarea.terminada && tarea.id === null) {
 
-            tarea.inicio = Date.now();
+    /* =====================================================
+       CANCELAR TAREAS
+    ====================================================== */
 
-            tarea.id = setTimeout(function () {
+    function cancelarTareas() {
 
-                tarea.terminada = true;
+        tareas.forEach(function (tarea) {
 
-                tarea.funcion();
+            if (tarea.id !== null) {
 
-            }, tarea.restante);
-        }
-    });
-}
-
-
-/* =====================================================
-   CANCELAR TODO
-===================================================== */
-
-function cancelarTareas() {
-
-    tareas.forEach(function (tarea) {
-
-        if (tarea.id !== null) {
-
-            clearTimeout(tarea.id);
-        }
-    });
-
-    tareas = [];
-}
-
-
-/* =====================================================
-   MOSTRAR ESCENA
-===================================================== */
-
-function mostrarEscena(escena) {
-
-    document
-        .querySelectorAll(".escena")
-        .forEach(function (elemento) {
-
-            elemento.classList.remove("activa");
-
+                clearTimeout(tarea.id);
+            }
         });
 
-    escena.classList.add("activa");
-}
-
-
-/* =====================================================
-   TEXTO INTRO
-===================================================== */
-
-function iniciarTextoIntro() {
-
-    textoIntro.textContent = "";
-
-    posicionIntro = 0;
-
-    escribiendoIntro = true;
-
-    escribirSiguienteIntro();
-}
-
-
-function escribirSiguienteIntro() {
-
-    if (!escribiendoIntro || pausado) {
-        return;
+        tareas = [];
     }
 
-    if (posicionIntro < mensajeIntro.length) {
 
-        textoIntro.textContent +=
-            mensajeIntro.charAt(posicionIntro);
+    /* =====================================================
+       MOSTRAR ESCENA
+    ====================================================== */
 
-        posicionIntro++;
+    function mostrarEscena(escena) {
 
-        esperar(
-            escribirSiguienteIntro,
-            velocidadIntro
-        );
-
-    } else {
-
-        escribiendoIntro = false;
-    }
-}
-
-
-/* =====================================================
-   FRASE DISTANCIA
-===================================================== */
-
-function prepararFraseDistancia() {
-
-    fraseDistancia.innerHTML = "";
-
-    const palabras =
-        mensajeDistancia.split(" ");
-
-    palabras.forEach(function (palabra) {
-
-        const span =
-            document.createElement("span");
-
-        span.className =
-            "palabra-distancia";
-
-        span.textContent = palabra;
-
-        fraseDistancia.appendChild(span);
-
-        fraseDistancia.appendChild(
-            document.createTextNode(" ")
-        );
-    });
-
-    indicePalabra = 0;
-
-    escribiendoDistancia = true;
-
-    mostrarSiguientePalabra();
-}
-
-
-function mostrarSiguientePalabra() {
-
-    if (!escribiendoDistancia || pausado) {
-        return;
-    }
-
-    const palabras =
-        fraseDistancia.querySelectorAll(
-            ".palabra-distancia"
-        );
-
-    if (indicePalabra < palabras.length) {
-
-        palabras[indicePalabra]
-            .classList.add("visible");
-
-        indicePalabra++;
-
-        esperar(
-            mostrarSiguientePalabra,
-            velocidadPalabra
-        );
-
-    } else {
-
-        escribiendoDistancia = false;
-    }
-}
-
-
-/* =====================================================
-   TEXTO FINAL
-===================================================== */
-
-function iniciarTextoFinal() {
-
-    textoFinal.textContent = "";
-
-    posicionFinal = 0;
-
-    escribiendoFinal = true;
-
-    escribirSiguienteFinal();
-}
-
-
-function escribirSiguienteFinal() {
-
-    if (!escribiendoFinal || pausado) {
-        return;
-    }
-
-    if (posicionFinal < mensajeFinal.length) {
-
-        textoFinal.textContent +=
-            mensajeFinal.charAt(posicionFinal);
-
-        posicionFinal++;
-
-        esperar(
-            escribirSiguienteFinal,
-            velocidadFinal
-        );
-
-    } else {
-
-        escribiendoFinal = false;
-
-        mostrarElementosFinales();
-    }
-}
-
-
-/* =====================================================
-   ELEMENTOS FINALES
-===================================================== */
-
-function mostrarElementosFinales() {
-
-    esperar(function () {
-
-        corazonFinal.classList.add("visible");
-
-    }, 450);
-
-
-    esperar(function () {
-
-        firma.classList.add("visible");
-
-    }, 1100);
-
-
-    esperar(function () {
-
-        btnVolver.classList.add("visible");
-
-    }, 1900);
-
-
-    esperar(function () {
-
-        luzFinal.classList.add("visible");
-
-    }, 2200);
-
-
-    /* La música continúa un momento antes de bajar */
-
-    esperar(function () {
-
-        bajarMusica();
-
-    }, 5900);
-}
-
-
-/* =====================================================
-   BAJAR MÚSICA
-===================================================== */
-
-function bajarMusica() {
-
-    const volumenInicial =
-        musica.volume;
-
-    const pasos = 20;
-
-    let paso = 0;
-
-    function reducir() {
-
-        if (pausado) {
+        if (!escena) {
             return;
         }
 
-        paso++;
+        document
+            .querySelectorAll(".escena")
+            .forEach(function (elemento) {
 
-        musica.volume =
-            Math.max(
-                0,
-                volumenInicial *
-                (1 - paso / pasos)
-            );
+                elemento.classList.remove("activa");
 
-        if (paso < pasos) {
+            });
 
-            esperar(reducir, 100);
-
-        } else {
-
-            musica.pause();
-            musica.volume = 0.38;
-        }
+        escena.classList.add("activa");
     }
 
-    reducir();
-}
 
+    /* =====================================================
+       TEXTO INTRO
+    ====================================================== */
 
-/* =====================================================
-   INICIAR PRESENTACIÓN
-===================================================== */
+    function iniciarTextoIntro() {
 
-function iniciarPresentacion() {
+        textoIntro.textContent = "";
 
-    cancelarTareas();
-
-    presentacionIniciada = true;
-    pausado = false;
-
-    detalle.classList.remove("pausado");
-
-    portada.classList.add("oculta");
-    detalle.classList.add("visible");
-
-    musica.pause();
-
-    musica.currentTime = 0;
-    musica.volume = 0.38;
-
-    musica.play().catch(function () {
-
-        console.log(
-            "La música no pudo reproducirse automáticamente."
-        );
-    });
-
-
-    /* INTRO */
-
-    mostrarEscena(escenaIntro);
-
-    iniciarTextoIntro();
-
-
-    /* FOTO 1 */
-
-    esperar(function () {
-
-        mostrarEscena(escenaFoto1);
-
-    }, tiempoIntro);
-
-
-    /* FOTO 2 NUEVA */
-
-    esperar(function () {
-
-        mostrarEscena(escenaFoto2);
-
-    }, tiempoIntro + tiempoFoto1);
-
-
-    /* FOTO 3 */
-
-    esperar(function () {
-
-        mostrarEscena(escenaFoto3);
-
-    },
-    tiempoIntro +
-    tiempoFoto1 +
-    tiempoFoto2);
-
-
-    /* FRASE DE DISTANCIA */
-
-    esperar(function () {
-
-        mostrarEscena(
-            escenaDistancia
-        );
-
-        prepararFraseDistancia();
-
-    },
-    tiempoIntro +
-    tiempoFoto1 +
-    tiempoFoto2 +
-    tiempoFoto3);
-
-
-    /* TULIPANES */
-
-    esperar(function () {
-
-        mostrarEscena(
-            escenaTulipanes
-        );
-
-    },
-    tiempoIntro +
-    tiempoFoto1 +
-    tiempoFoto2 +
-    tiempoFoto3 +
-    tiempoDistancia);
-
-
-    /* FINAL */
-
-    esperar(function () {
-
-        mostrarEscena(
-            escenaFinal
-        );
-
-        iniciarTextoFinal();
-
-    },
-    tiempoIntro +
-    tiempoFoto1 +
-    tiempoFoto2 +
-    tiempoFoto3 +
-    tiempoDistancia +
-    tiempoTulipanes);
-}
-
-
-/* =====================================================
-   PAUSAR PRESENTACIÓN
-===================================================== */
-
-function pausarPresentacion() {
-
-    if (!presentacionIniciada || pausado) {
-        return;
-    }
-
-    pausado = true;
-
-    pausarTareas();
-
-    musica.pause();
-
-    detalle.classList.add("pausado");
-}
-
-
-/* =====================================================
-   CONTINUAR PRESENTACIÓN
-===================================================== */
-
-function continuarPresentacion() {
-
-    if (!presentacionIniciada || !pausado) {
-        return;
-    }
-
-    pausado = false;
-
-    detalle.classList.remove("pausado");
-
-    musica.play().catch(function () {
-
-        console.log(
-            "La música no pudo continuar."
-        );
-    });
-
-    reanudarTareas();
-
-
-    /*
-       Si se pausó mientras se escribía un texto,
-       continuamos desde donde quedó.
-    */
-
-    if (escribiendoIntro) {
+        posicionIntro = 0;
+        escribiendoIntro = true;
 
         escribirSiguienteIntro();
     }
 
-    if (escribiendoDistancia) {
+
+    function escribirSiguienteIntro() {
+
+        if (!escribiendoIntro || pausado) {
+            return;
+        }
+
+        if (posicionIntro < mensajeIntro.length) {
+
+            textoIntro.textContent +=
+                mensajeIntro.charAt(posicionIntro);
+
+            posicionIntro++;
+
+            esperar(
+                escribirSiguienteIntro,
+                velocidadIntro
+            );
+
+        } else {
+
+            escribiendoIntro = false;
+        }
+    }
+
+
+    /* =====================================================
+       FRASE DE DISTANCIA
+    ====================================================== */
+
+    function prepararFraseDistancia() {
+
+        fraseDistancia.innerHTML = "";
+
+        const palabras =
+            mensajeDistancia.split(" ");
+
+        palabras.forEach(function (palabra) {
+
+            const span =
+                document.createElement("span");
+
+            span.className =
+                "palabra-distancia";
+
+            span.textContent = palabra;
+
+            fraseDistancia.appendChild(span);
+
+            fraseDistancia.appendChild(
+                document.createTextNode(" ")
+            );
+        });
+
+        indicePalabra = 0;
+        escribiendoDistancia = true;
 
         mostrarSiguientePalabra();
     }
 
-    if (escribiendoFinal) {
 
-        escribirSiguienteFinal();
-    }
-}
+    function mostrarSiguientePalabra() {
 
-
-/* =====================================================
-   REINICIAR
-===================================================== */
-
-function reiniciarPresentacion() {
-
-    cancelarTareas();
-
-    presentacionIniciada = false;
-    pausado = false;
-
-    escribiendoIntro = false;
-    escribiendoDistancia = false;
-    escribiendoFinal = false;
-
-    detalle.classList.remove(
-        "visible",
-        "pausado"
-    );
-
-    portada.classList.remove("oculta");
-
-    document
-        .querySelectorAll(".escena")
-        .forEach(function (escena) {
-
-            escena.classList.remove("activa");
-
-        });
-
-    escenaIntro.classList.add("activa");
-
-
-    /* LIMPIAR TEXTOS */
-
-    textoIntro.textContent = "";
-
-    textoFinal.textContent = "";
-
-    fraseDistancia.innerHTML = "";
-
-
-    /* LIMPIAR FINAL */
-
-    corazonFinal.classList.remove("visible");
-
-    firma.classList.remove("visible");
-
-    btnVolver.classList.remove("visible");
-
-    luzFinal.classList.remove("visible");
-
-
-    /* REINICIAR MÚSICA */
-
-    musica.pause();
-
-    musica.currentTime = 0;
-
-    musica.volume = 0.38;
-
-
-    /* VOLVER A ESCRIBIR PORTADA */
-
-    escribirPortada();
-}
-
-
-/* =====================================================
-   EVENTOS
-===================================================== */
-
-btnIniciar.addEventListener(
-    "click",
-    function (evento) {
-
-        evento.stopPropagation();
-
-        iniciarPresentacion();
-    }
-);
-
-
-btnVolver.addEventListener(
-    "click",
-    function (evento) {
-
-        evento.stopPropagation();
-
-        reiniciarPresentacion();
-    }
-);
-
-
-/*
-   TOCAR UNA VEZ = PAUSA
-   TOCAR OTRA VEZ = CONTINÚA
-
-   No se muestra ningún indicador.
-*/
-
-detalle.addEventListener(
-    "click",
-    function (evento) {
-
-        if (evento.target.closest("button")) {
+        if (!escribiendoDistancia || pausado) {
             return;
         }
 
-        if (!presentacionIniciada) {
-            return;
-        }
+        const palabras =
+            fraseDistancia.querySelectorAll(
+                ".palabra-distancia"
+            );
 
-        if (pausado) {
+        if (indicePalabra < palabras.length) {
 
-            continuarPresentacion();
+            palabras[indicePalabra]
+                .classList.add("visible");
+
+            indicePalabra++;
+
+            esperar(
+                mostrarSiguientePalabra,
+                velocidadPalabra
+            );
 
         } else {
 
-            pausarPresentacion();
+            escribiendoDistancia = false;
         }
     }
-);
 
 
-/* =====================================================
-   INICIO
-===================================================== */
+    /* =====================================================
+       TEXTO FINAL
+    ====================================================== */
 
-window.addEventListener(
-    "DOMContentLoaded",
-    function () {
+    function iniciarTextoFinal() {
 
+        textoFinal.textContent = "";
+
+        posicionFinal = 0;
+        escribiendoFinal = true;
+
+        escribirSiguienteFinal();
+    }
+
+
+    function escribirSiguienteFinal() {
+
+        if (!escribiendoFinal || pausado) {
+            return;
+        }
+
+        if (posicionFinal < mensajeFinal.length) {
+
+            textoFinal.textContent +=
+                mensajeFinal.charAt(posicionFinal);
+
+            posicionFinal++;
+
+            esperar(
+                escribirSiguienteFinal,
+                velocidadFinal
+            );
+
+        } else {
+
+            escribiendoFinal = false;
+
+            mostrarElementosFinales();
+        }
+    }
+
+
+    /* =====================================================
+       ELEMENTOS FINALES
+    ====================================================== */
+
+    function mostrarElementosFinales() {
+
+        esperar(function () {
+
+            corazonFinal.classList.add("visible");
+
+        }, 450);
+
+
+        esperar(function () {
+
+            firma.classList.add("visible");
+
+        }, 1100);
+
+
+        esperar(function () {
+
+            btnVolver.classList.add("visible");
+
+        }, 1900);
+
+
+        esperar(function () {
+
+            luzFinal.classList.add("visible");
+
+        }, 2200);
+
+
+        esperar(function () {
+
+            bajarMusica();
+
+        }, 5900);
+    }
+
+
+    /* =====================================================
+       BAJAR MÚSICA
+    ====================================================== */
+
+    function bajarMusica() {
+
+        const volumenInicial = musica.volume;
+        const pasos = 20;
+
+        let paso = 0;
+
+        function reducir() {
+
+            if (pausado) {
+                return;
+            }
+
+            paso++;
+
+            musica.volume =
+                Math.max(
+                    0,
+                    volumenInicial *
+                    (1 - paso / pasos)
+                );
+
+            if (paso < pasos) {
+
+                esperar(reducir, 100);
+
+            } else {
+
+                musica.pause();
+                musica.volume = 0.38;
+            }
+        }
+
+        reducir();
+    }
+
+
+    /* =====================================================
+       INICIAR PRESENTACIÓN
+    ====================================================== */
+
+    function iniciarPresentacion() {
+
+        cancelarTareas();
+
+        presentacionIniciada = true;
+        pausado = false;
+
+        detalle.classList.remove("pausado");
+
+        portada.classList.add("oculta");
+        detalle.classList.add("visible");
+
+
+        /* MÚSICA */
+
+        musica.pause();
+        musica.currentTime = 0;
         musica.volume = 0.38;
+
+        musica.play().catch(function () {
+
+            console.log(
+                "La música no pudo reproducirse."
+            );
+        });
+
+
+        /* INTRO */
+
+        mostrarEscena(escenaIntro);
+
+        iniciarTextoIntro();
+
+
+        /* FOTO 1 */
+
+        esperar(function () {
+
+            mostrarEscena(escenaFoto1);
+
+        }, tiempoIntro);
+
+
+        /* FOTO 2 - NUEVA */
+
+        esperar(function () {
+
+            mostrarEscena(escenaFoto2);
+
+        },
+        tiempoIntro +
+        tiempoFoto1);
+
+
+        /* FOTO 3 */
+
+        esperar(function () {
+
+            mostrarEscena(escenaFoto3);
+
+        },
+        tiempoIntro +
+        tiempoFoto1 +
+        tiempoFoto2);
+
+
+        /* FRASE DE DISTANCIA */
+
+        esperar(function () {
+
+            mostrarEscena(
+                escenaDistancia
+            );
+
+            prepararFraseDistancia();
+
+        },
+        tiempoIntro +
+        tiempoFoto1 +
+        tiempoFoto2 +
+        tiempoFoto3);
+
+
+        /* TULIPANES */
+
+        esperar(function () {
+
+            mostrarEscena(
+                escenaTulipanes
+            );
+
+        },
+        tiempoIntro +
+        tiempoFoto1 +
+        tiempoFoto2 +
+        tiempoFoto3 +
+        tiempoDistancia);
+
+
+        /* FINAL */
+
+        esperar(function () {
+
+            mostrarEscena(
+                escenaFinal
+            );
+
+            iniciarTextoFinal();
+
+        },
+        tiempoIntro +
+        tiempoFoto1 +
+        tiempoFoto2 +
+        tiempoFoto3 +
+        tiempoDistancia +
+        tiempoTulipanes);
+    }
+
+
+    /* =====================================================
+       PAUSAR PRESENTACIÓN
+    ====================================================== */
+
+    function pausarPresentacion() {
+
+        if (!presentacionIniciada || pausado) {
+            return;
+        }
+
+        pausado = true;
+
+        pausarTareas();
+
+        musica.pause();
+
+        detalle.classList.add("pausado");
+    }
+
+
+    /* =====================================================
+       CONTINUAR PRESENTACIÓN
+    ====================================================== */
+
+    function continuarPresentacion() {
+
+        if (!presentacionIniciada || !pausado) {
+            return;
+        }
+
+        pausado = false;
+
+        detalle.classList.remove("pausado");
+
+        musica.play().catch(function () {
+
+            console.log(
+                "La música no pudo continuar."
+            );
+        });
+
+        reanudarTareas();
+
+
+        /*
+           CONTINUAR TEXTOS SI SE PAUSÓ
+           MIENTRAS SE ESTABAN ESCRIBIENDO
+        */
+
+        if (escribiendoIntro) {
+
+            escribirSiguienteIntro();
+        }
+
+        if (escribiendoDistancia) {
+
+            mostrarSiguientePalabra();
+        }
+
+        if (escribiendoFinal) {
+
+            escribirSiguienteFinal();
+        }
+    }
+
+
+    /* =====================================================
+       REINICIAR PRESENTACIÓN
+    ====================================================== */
+
+    function reiniciarPresentacion() {
+
+        cancelarTareas();
+
+        presentacionIniciada = false;
+        pausado = false;
+
+        escribiendoIntro = false;
+        escribiendoDistancia = false;
+        escribiendoFinal = false;
+
+
+        /* OCULTAR PRESENTACIÓN */
+
+        detalle.classList.remove(
+            "visible",
+            "pausado"
+        );
+
+
+        /* MOSTRAR PORTADA */
+
+        portada.classList.remove("oculta");
+
+
+        /* REINICIAR ESCENAS */
+
+        document
+            .querySelectorAll(".escena")
+            .forEach(function (escena) {
+
+                escena.classList.remove("activa");
+
+            });
+
+        escenaIntro.classList.add("activa");
+
+
+        /* LIMPIAR TEXTOS */
+
+        textoIntro.textContent = "";
+        textoFinal.textContent = "";
+        fraseDistancia.innerHTML = "";
+
+
+        /* LIMPIAR FINAL */
+
+        corazonFinal.classList.remove("visible");
+        firma.classList.remove("visible");
+        btnVolver.classList.remove("visible");
+        luzFinal.classList.remove("visible");
+
+
+        /* REINICIAR MÚSICA */
+
+        musica.pause();
+        musica.currentTime = 0;
+        musica.volume = 0.38;
+
+
+        /* REINICIAR PORTADA */
 
         escribirPortada();
     }
-);
+
+
+    /* =====================================================
+       BOTÓN VER DETALLE
+    ====================================================== */
+
+    if (btnIniciar) {
+
+        btnIniciar.addEventListener(
+            "click",
+            function (evento) {
+
+                evento.preventDefault();
+                evento.stopPropagation();
+
+                iniciarPresentacion();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       BOTÓN VOLVER A VER
+    ====================================================== */
+
+    if (btnVolver) {
+
+        btnVolver.addEventListener(
+            "click",
+            function (evento) {
+
+                evento.preventDefault();
+                evento.stopPropagation();
+
+                reiniciarPresentacion();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       PAUSA INVISIBLE AL TOCAR LA PRESENTACIÓN
+    ====================================================== */
+
+    if (detalle) {
+
+        detalle.addEventListener(
+            "click",
+            function (evento) {
+
+                if (evento.target.closest("button")) {
+                    return;
+                }
+
+                if (!presentacionIniciada) {
+                    return;
+                }
+
+                if (pausado) {
+
+                    continuarPresentacion();
+
+                } else {
+
+                    pausarPresentacion();
+                }
+            }
+        );
+    }
+
+
+    /* =====================================================
+       INICIO
+    ====================================================== */
+
+    musica.volume = 0.38;
+
+    escribirPortada();
+
+});

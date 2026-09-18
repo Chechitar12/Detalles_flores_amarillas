@@ -873,30 +873,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 corazon
             );
 
-            /*
-               Safari/iPhone: usamos Web Animations API como respaldo.
-               Así no dependemos de que WebKit interprete correctamente
-               variables CSS dentro de transform en los keyframes.
-            */
-            const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-
-            if (esIOS && typeof corazon.animate === "function") {
-                const duracionMs = numeroAleatorio(1700, 3000);
-                corazon.style.animation = "none";
-                corazon.style.webkitAnimation = "none";
-                corazon.animate([
-                    { opacity: 0, transform: "translate3d(0,0,0) scale(.15) rotate(0deg)" },
-                    { opacity: 1, offset: .10 },
-                    { opacity: 1, offset: .55 },
-                    { opacity: 0, transform: `translate3d(${destinoX}px, ${destinoY}px, 0) scale(${corazon.style.getPropertyValue("--escala")}) rotate(${corazon.style.getPropertyValue("--rotacion")})` }
-                ], {
-                    duration: duracionMs,
-                    easing: "cubic-bezier(.16,.72,.24,1)",
-                    fill: "forwards"
-                });
-            }
-
             setTimeout(() => {
 
                 corazon.remove();

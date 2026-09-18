@@ -2,83 +2,221 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Flores para María 🌷</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-    <link rel="stylesheet" href="estilos.css">
+    <meta
+        name="theme-color"
+        content="#fff8e9"
+    >
+
+    <title>Una pequeña sorpresa</title>
+
+    <link
+        rel="stylesheet"
+        href="estilos.css"
+    >
 </head>
 
 <body>
 
-    <!-- CORTINA INICIAL -->
-    <div class="cortina" id="cortina"></div>
-
     <!-- =====================================================
-         PORTADA
+         FONDO
     ====================================================== -->
-    <main class="portada" id="portada">
 
-        <div class="brillos"></div>
-
-        <div class="contenido-portada">
-
-            <p class="fecha">21 DE SEPTIEMBRE</p>
-
-            <h1 class="titulo">
-                Feliz día de las flores amarillas
-                <span>Mari</span>
-            </h1>
-
-            <div class="ramo-portada">
-                <img src="recursos/ramo.png" alt="Ramo de flores">
-            </div>
-
-            <p class="subtitulo" id="textoPortada"></p>
-
-            <button class="btn-iniciar" id="btnIniciar">
-                ◇ Ver detalle ◇
-            </button>
-
-        </div>
-
-    </main>
+    <div class="fondo-ambiente">
+        <div class="luz luz-1"></div>
+        <div class="luz luz-2"></div>
+        <div class="luz luz-3"></div>
+    </div>
 
 
     <!-- =====================================================
-         PRESENTACIÓN
+         PROGRESO
     ====================================================== -->
-    <main class="detalle" id="detalle">
 
-        <div class="luz-final" id="luzFinal"></div>
+    <div
+        id="progreso"
+        class="progreso ocultar-progreso"
+    >
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+    </div>
 
-        <!-- PARTÍCULAS GENERALES -->
-        <div class="particulas">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+
+    <!-- =====================================================
+         EXPERIENCIA
+    ====================================================== -->
+
+    <main class="experiencia">
 
 
         <!-- =================================================
-             INTRO
+             1. INICIO
         ================================================== -->
-        <section class="escena escena-intro activa" id="escenaIntro">
 
-            <div class="contenido-escena">
+        <section
+            id="escenaInicio"
+            class="escena escena-inicio activa"
+        >
 
-                <h2>
-                    Un pequeño detalle
-                    <span>para ti</span>
-                </h2>
+            <!-- PRESENTACIÓN -->
 
-                <p
-                    class="texto-escritura-intro"
-                    id="textoIntro">
-                </p>
+            <div
+                id="momentoPresentacion"
+                class="momento-inicio activo"
+            >
+
+                <!-- partículas sutiles -->
+                <div
+                    id="particulasInicio"
+                    class="particulas-inicio"
+                    aria-hidden="true"
+                ></div>
+
+                <div class="presentacion-inicio">
+
+                    <div
+                        id="destelloPresentacion"
+                        class="destello-presentacion elemento-inicial"
+                    >
+                        ✦
+                    </div>
+
+                    <p
+                        id="etiquetaInicio"
+                        class="etiqueta etiqueta-inicio elemento-inicial"
+                    >
+                        TENGO ALGO PARA TI
+                    </p>
+
+                    <h1
+                        id="tituloInicio"
+                        class="texto-escritura titulo-inicio"
+                    ></h1>
+
+                    <p
+                        id="descripcionInicio"
+                        class="descripcion texto-escritura"
+                    ></p>
+
+
+                    <!-- Línea decorativa -->
+                    <div
+                        id="separadorInicio"
+                        class="separador-inicio"
+                        aria-hidden="true"
+                    >
+                        <span></span>
+                        <b>✦</b>
+                        <span></span>
+                    </div>
+
+
+                    <button
+                        id="btnAbrir"
+                        class="boton boton-principal elemento-espera"
+                        type="button"
+                    >
+                        ✨ ABRIR SORPRESA ✨
+                    </button>
+
+                    <p
+                        id="pistaInicio"
+                        class="pista elemento-espera"
+                    >
+                        Hay algo esperando por aquí 👀
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAJA -->
+
+            <div
+                id="momentoCaja"
+                class="momento-inicio"
+            >
+
+                <div class="apertura-caja-contenedor">
+
+                    <p
+                        id="textoDescubrimiento"
+                        class="texto-descubrimiento texto-escritura"
+                    ></p>
+
+
+                    <div
+                        id="zonaCaja"
+                        class="zona-caja"
+                    >
+
+                        <div class="resplandor-caja"></div>
+
+                        <div class="haz-luz-caja"></div>
+
+
+                        <span class="destello-caja dc-1">✦</span>
+                        <span class="destello-caja dc-2">✦</span>
+                        <span class="destello-caja dc-3">✦</span>
+                        <span class="destello-caja dc-4">✦</span>
+
+
+                        <div
+                            id="contenedorCorazonesCaja"
+                            class="contenedor-corazones-caja"
+                        ></div>
+
+
+                        <div class="caja-regalo">
+
+                            <div class="interior-caja"></div>
+
+
+                            <div class="base-caja">
+
+                                <div class="cinta-vertical"></div>
+
+                            </div>
+
+
+                            <div class="frente-caja">
+
+                                <span>
+                                    para ti ✦
+                                </span>
+
+                            </div>
+
+
+                            <div class="tapa-caja">
+
+                                <div class="cinta-tapa"></div>
+
+                                <div class="lazo">
+
+                                    <span class="lazo-izq"></span>
+                                    <span class="lazo-der"></span>
+                                    <span class="centro-lazo"></span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -86,180 +224,585 @@
 
 
         <!-- =================================================
-             FOTO 1
+             2. FLORES
         ================================================== -->
-        <section class="escena escena-foto escena-foto1" id="escenaFoto1">
 
-            <div class="contenido-escena">
+        <section
+            id="escenaFlores"
+            class="escena escena-flores"
+        >
 
-                <h2 class="titulo-foto">
-                    Un bonito recuerdo
-                </h2>
+            <div class="contenido contenido-flores">
 
-                <div class="marco-foto marco-foto1">
+                <p class="etiqueta">
+                    UN PEQUEÑO DETALLE
+                </p>
+
+
+                <div class="ramo-principal">
+
+                    <div class="halo-ramo"></div>
+
+                    <span class="brillo brillo-1">✦</span>
+                    <span class="brillo brillo-2">✦</span>
+                    <span class="brillo brillo-3">✦</span>
+
                     <img
-                        src="recursos/foto1.png"
-                        alt="Un bonito recuerdo">
-                </div>
-
-                <p class="descripcion-foto">
-                    Hay momentos que se vuelven especiales
-                    simplemente por compartirlos con una persona especial.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FOTO 2 - NUEVA
-        ================================================== -->
-        <section class="escena escena-foto escena-foto2" id="escenaFoto2">
-
-            <div class="contenido-escena">
-
-                <h2 class="titulo-foto">
-                    Un bonito momento
-                </h2>
-
-                <div class="marco-foto marco-foto2">
-                    <img
-                        src="recursos/foto2.png"
-                        alt="Un bonito momento">
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FOTO 3 - ANTES ERA FOTO 2
-        ================================================== -->
-        <section class="escena escena-foto escena-foto3" id="escenaFoto3">
-
-            <div class="contenido-escena">
-
-                <h2 class="titulo-foto">
-                    Momentos para recordar
-                </h2>
-
-                <div class="marco-foto marco-foto3">
-                    <img
-                        src="recursos/foto3.png"
-                        alt="Momentos para recordar">
-                </div>
-
-                <p class="descripcion-foto">
-                    Algunos recuerdos merecen quedarse
-                    guardados para siempre.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FRASE DE DISTANCIA
-        ================================================== -->
-        <section class="escena escena-distancia" id="escenaDistancia">
-
-            <div class="contenido-escena">
-
-                <p
-                    class="frase-distancia"
-                    id="fraseDistancia">
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             TULIPANES
-        ================================================== -->
-        <section class="escena escena-tulipanes" id="escenaTulipanes">
-
-            <!-- PÉTALOS -->
-            <div class="petalos">
-
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-                <span>❋</span>
-
-            </div>
-
-            <div class="contenido-escena">
-
-                <p class="mini-titulo">
-                    FLORES AMARILLAS
-                </p>
-
-                <div class="tulipanes">
-                    <img
-                        src="recursos/tulipanes.png"
-                        alt="Tulipanes amarillos">
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FINAL
-        ================================================== -->
-        <section class="escena escena-final" id="escenaFinal">
-
-            <div class="contenido-escena">
-
-                <h2>Para María</h2>
-
-                <p
-                    class="texto-final"
-                    id="textoFinal">
-                </p>
-
-                <div class="corazon-final" id="corazonFinal">
-                    ♡
-                </div>
-
-                <div class="firma" id="firma">
-
-                    <span>Con cariño</span>
-
-                    <strong>César</strong>
+                        src="recursos/ramo.png"
+                        alt="Ramo de flores amarillas"
+                    >
 
                 </div>
+
+
+                <div class="texto-flores-escritura">
+
+                    <p
+                        id="fraseFlor1"
+                        class="frase-fecha texto-escritura"
+                    ></p>
+
+
+                    <div
+                        id="separadorFlores"
+                        class="separador-dorado"
+                    >
+                        <i></i>
+                        <span>✦</span>
+                        <i></i>
+                    </div>
+
+
+                    <p
+                        id="fraseFlor2"
+                        class="texto-flor-secundario texto-escritura"
+                    ></p>
+
+                    <p
+                        id="fraseFlor3"
+                        class="texto-flor-secundario texto-escritura"
+                    ></p>
+
+                </div>
+
 
                 <button
-                    class="btn-volver"
-                    id="btnVolver">
-                    ↻ Volver a ver
+                    id="btnARecuerdos"
+                    class="boton boton-continuar elemento-espera"
+                    type="button"
+                >
+                    Hay algo más →
                 </button>
 
             </div>
 
         </section>
 
+
+        <!-- =================================================
+             3. PUENTE
+        ================================================== -->
+
+        <section
+            id="escenaPuente"
+            class="escena"
+        >
+
+            <div class="contenido contenido-puente">
+
+                <span class="mini-destello">
+                    ✦
+                </span>
+
+                <h2>
+                    Pero las flores no eran todo…
+                </h2>
+
+                <p>
+                    También quería dejar algunos recuerdos por aquí.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             4. RECUERDOS
+        ================================================== -->
+
+        <section
+            id="escenaRecuerdos"
+            class="escena escena-recuerdos"
+        >
+
+            <div class="contenido contenido-recuerdos">
+
+                <div class="encabezado-recuerdos">
+
+                    <p class="etiqueta">
+                        ALGUNOS RECUERDOS
+                    </p>
+
+                </div>
+
+
+                <!-- FOTO 1 -->
+
+                <article
+                    class="recuerdo recuerdo-1"
+                    data-recuerdo="0"
+                >
+
+                    <h2 class="titulo-recuerdo">
+                        UN MOMENTO BONITO
+                    </h2>
+
+
+                    <div class="tarjeta-foto">
+
+                        <div class="brillo-marco"></div>
+
+                        <div class="marco-interior">
+
+                            <img
+                                src="recursos/foto1.png"
+                                alt="Un momento bonito"
+                            >
+
+                        </div>
+
+                        <p class="nota-foto">
+                            un bonito recuerdo ✦
+                        </p>
+
+                    </div>
+
+
+                    <div class="frase-recuerdo">
+
+                        <p
+                            class="texto-recuerdo texto-escritura"
+                            data-text="Hay momentos sencillos que terminan convirtiéndose en recuerdos bonitos."
+                        ></p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTO 2 -->
+
+                <article
+                    class="recuerdo recuerdo-2"
+                    data-recuerdo="1"
+                >
+
+                    <h2 class="titulo-recuerdo">
+                        UNA FOTO PARA GUARDAR
+                    </h2>
+
+
+                    <div class="tarjeta-foto">
+
+                        <div class="brillo-marco"></div>
+
+                        <div class="marco-interior">
+
+                            <img
+                                src="recursos/foto2.png"
+                                alt="Una foto para guardar"
+                            >
+
+                        </div>
+
+                        <p class="nota-foto">
+                            para guardar ✦
+                        </p>
+
+                    </div>
+
+
+                    <div class="frase-recuerdo">
+
+                        <p
+                            class="texto-recuerdo texto-escritura"
+                            data-text="A veces una foto guarda mucho más de lo que parece."
+                        ></p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FOTO 3 -->
+
+                <article
+                    class="recuerdo recuerdo-3"
+                    data-recuerdo="2"
+                >
+
+                    <h2 class="titulo-recuerdo">
+                        DE ESOS MOMENTOS
+                    </h2>
+
+
+                    <div class="tarjeta-foto">
+
+                        <div class="brillo-marco"></div>
+
+                        <div class="marco-interior">
+
+                            <img
+                                src="recursos/foto3.png"
+                                alt="De esos momentos"
+                            >
+
+                        </div>
+
+                        <p class="nota-foto">
+                            uno de esos momentos ✦
+                        </p>
+
+                    </div>
+
+
+                    <div class="frase-recuerdo">
+
+                        <p
+                            class="texto-recuerdo texto-escritura"
+                            data-text="Y hay momentos que simplemente vale la pena conservar."
+                        ></p>
+
+                    </div>
+
+                </article>
+
+
+                <p
+                    id="ayudaPausa"
+                    class="ayuda-pausa"
+                >
+                    Toca la pantalla si quieres quedarte un poquito más ✦
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             5. JUEGO
+        ================================================== -->
+
+        <section
+            id="escenaJuego"
+            class="escena"
+        >
+
+            <div class="contenido contenido-juego">
+
+                <p class="etiqueta">
+                    UN PEQUEÑO RETO
+                </p>
+
+                <h2>
+                    Encuentra el tulipán diferente.
+                </h2>
+
+                <p class="instruccion-juego">
+                    Hay uno que no es exactamente igual a los demás 👀
+                </p>
+
+
+                <div
+                    id="tableroTulipanes"
+                    class="tablero-tulipanes"
+                ></div>
+
+
+                <p
+                    id="mensajeJuego"
+                    class="mensaje-juego"
+                ></p>
+
+
+                <button
+                    id="btnDespuesJuego"
+                    class="boton boton-continuar oculto"
+                    type="button"
+                >
+                    Lo encontré →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             6. MENSAJE
+        ================================================== -->
+
+        <section
+            id="escenaMensaje"
+            class="escena"
+        >
+
+            <div class="contenido contenido-mensaje">
+
+                <span class="mini-destello">
+                    ✦
+                </span>
+
+                <p class="etiqueta">
+                    UNA COSA MÁS
+                </p>
+
+                <h2>
+                    Bueno…
+                </h2>
+
+
+                <div class="confesion">
+
+                    <p>
+                        No hice esto porque fuera una fecha especial.
+                    </p>
+
+                    <p>
+                        Solo quería tener un pequeño detalle contigo y,
+                        con suerte, sacarte una sonrisa.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="btnAFotoFinal"
+                    class="boton boton-continuar"
+                    type="button"
+                >
+                    Una última cosa →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             7. FOTO 4
+        ================================================== -->
+
+        <section
+            id="escenaFotoFinal"
+            class="escena"
+        >
+
+            <div class="contenido contenido-destacada">
+
+                <div
+                    id="antesTerminar"
+                    class="antes-terminar"
+                >
+                    <p>
+                        Y antes de terminar…
+                    </p>
+                </div>
+
+
+                <div
+                    id="fotoDestacada"
+                    class="foto-destacada"
+                >
+
+                    <div class="marco-destacado">
+
+                        <div class="brillo-marco"></div>
+
+                        <div class="marco-interior">
+
+                            <img
+                                src="recursos/foto4.png"
+                                alt="Un último recuerdo"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="texto-destacado">
+
+                        <p class="etiqueta">
+                            UN ÚLTIMO RECUERDO
+                        </p>
+
+                        <p
+                            id="fraseFotoFinal"
+                            class="frase-foto-final texto-escritura"
+                        ></p>
+
+                    </div>
+
+
+                    <button
+                        id="btnAlFinal"
+                        class="boton boton-continuar boton-final-foto elemento-espera"
+                        type="button"
+                    >
+                        Continuar →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             8. FINAL
+        ================================================== -->
+
+        <section
+            id="escenaFinal"
+            class="escena escena-final"
+        >
+
+            <div class="contenido contenido-final">
+
+                <div class="final-tulipanes">
+
+                    <div class="halo-final"></div>
+
+                    <span class="final-brillo final-brillo-1">
+                        ✦
+                    </span>
+
+                    <span class="final-brillo final-brillo-2">
+                        ✦
+                    </span>
+
+                    <img
+                        src="recursos/tulipanes.png"
+                        alt="Tulipanes amarillos"
+                    >
+
+                </div>
+
+
+                <div class="mensaje-final">
+
+                    <p>
+                        No tengo mucho más que decir…
+                    </p>
+
+                    <p>
+                        Solo quería regalarte un pequeño momento bonito.
+                    </p>
+
+
+                    <div class="firma-final">
+
+                        <span>
+                            Con cariño,
+                        </span>
+
+                        <strong>
+                            César ❤️
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        id="preguntaFinal"
+                        class="pregunta-final"
+                    >
+
+                        <h2>
+                            ¿Te gustó la sorpresa? 👀
+                        </h2>
+
+
+                        <div class="opciones-finales">
+
+                            <button
+                                id="btnSi"
+                                class="boton"
+                                type="button"
+                            >
+                                Sí 🥰
+                            </button>
+
+                            <button
+                                id="btnPoquito"
+                                class="boton"
+                                type="button"
+                            >
+                                Un poquito 😌
+                            </button>
+
+                        </div>
+
+
+                        <p
+                            id="respuestaFinal"
+                            class="respuesta-final"
+                        ></p>
+
+
+                        <button
+                            id="btnRepetir"
+                            class="boton-repetir"
+                            type="button"
+                        >
+                            Volver a verla ↻
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
 
-    <!-- =====================================================
-         MÚSICA
-    ====================================================== -->
+    <!-- PAUSA -->
+
+    <div
+        id="indicadorPausa"
+        class="indicador-pausa"
+    >
+        ❚❚
+    </div>
+
+
+    <!-- EFECTOS -->
+
+    <div
+        id="capaEfectos"
+        class="capa-efectos"
+    ></div>
+
+
+    <!-- MÚSICA -->
+
     <audio
         id="musica"
-        src="recursos/cancion.mp3"
-        preload="auto">
+        preload="auto"
+        loop
+        playsinline
+    >
+        <source
+            src="recursos/cancion.mp3"
+            type="audio/mpeg"
+        >
     </audio>
 
 

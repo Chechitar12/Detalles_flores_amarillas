@@ -1,813 +1,1886 @@
-/* =====================================================
-   ESPERAR A QUE CARGUE TODO EL HTML
-===================================================== */
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+const musica = document.getElementById("musica");
 
-    /* =====================================================
-       ELEMENTOS
-    ====================================================== */
+const progreso = document.getElementById("progreso");
+const puntos = document.querySelectorAll(".punto");
 
-    const portada = document.getElementById("portada");
-    const detalle = document.getElementById("detalle");
+const escenaInicio = document.getElementById("escenaInicio");
+const escenaFlores = document.getElementById("escenaFlores");
+const escenaPuente = document.getElementById("escenaPuente");
+const escenaRecuerdos = document.getElementById("escenaRecuerdos");
+const escenaJuego = document.getElementById("escenaJuego");
+const escenaMensaje = document.getElementById("escenaMensaje");
+const escenaFotoFinal = document.getElementById("escenaFotoFinal");
+const escenaFinal = document.getElementById("escenaFinal");
 
-    const btnIniciar = document.getElementById("btnIniciar");
-    const btnVolver = document.getElementById("btnVolver");
+const escenas = document.querySelectorAll(".escena");
 
-    const musica = document.getElementById("musica");
 
-    const textoPortada = document.getElementById("textoPortada");
-    const textoIntro = document.getElementById("textoIntro");
+/* INICIO */
 
-    const escenaIntro = document.getElementById("escenaIntro");
-    const escenaFoto1 = document.getElementById("escenaFoto1");
-    const escenaFoto2 = document.getElementById("escenaFoto2");
-    const escenaFoto3 = document.getElementById("escenaFoto3");
-    const escenaDistancia = document.getElementById("escenaDistancia");
-    const escenaTulipanes = document.getElementById("escenaTulipanes");
-    const escenaFinal = document.getElementById("escenaFinal");
+const momentoPresentacion =
+    document.getElementById("momentoPresentacion");
 
-    const fraseDistancia = document.getElementById("fraseDistancia");
-    const textoFinal = document.getElementById("textoFinal");
+const momentoCaja =
+    document.getElementById("momentoCaja");
 
-    const corazonFinal = document.getElementById("corazonFinal");
-    const firma = document.getElementById("firma");
-    const luzFinal = document.getElementById("luzFinal");
+const destelloPresentacion =
+    document.getElementById("destelloPresentacion");
 
+const etiquetaInicio =
+    document.getElementById("etiquetaInicio");
 
-    /* =====================================================
-       TEXTOS
-    ====================================================== */
+const tituloInicio =
+    document.getElementById("tituloInicio");
 
-    const mensajePortada =
-        "Estas flores son para ti.";
+const descripcionInicio =
+    document.getElementById("descripcionInicio");
 
-    const mensajeIntro =
-        "Algunos momentos merecen quedarse para siempre.";
+const separadorInicio =
+    document.getElementById("separadorInicio");
 
-    const mensajeDistancia =
-        "La distancia puede cambiar muchas cosas, pero no las ganas de sorprenderte con un pequeño detalle en un día como hoy. 💛";
+const btnAbrir =
+    document.getElementById("btnAbrir");
 
-    const mensajeFinal =
-        "Espero que este pequeño detalle te saque una sonrisa. " +
-        "Que nunca te falten motivos para sonreír, momentos bonitos " +
-        "para recordar y personas que hagan tus días un poquito más especiales. " +
-        "Estas flores amarillas son para ti. 💛";
+const pistaInicio =
+    document.getElementById("pistaInicio");
 
+const particulasInicio =
+    document.getElementById("particulasInicio");
 
-    /* =====================================================
-       TIEMPOS
-    ====================================================== */
 
-    const tiempoIntro = 5200;
-    const tiempoFoto1 = 6500;
-    const tiempoFoto2 = 6500;
-    const tiempoFoto3 = 6500;
-    const tiempoDistancia = 6500;
-    const tiempoTulipanes = 8000;
+/* CAJA */
 
-    const velocidadPortada = 70;
-    const velocidadIntro = 60;
-    const velocidadFinal = 38;
-    const velocidadPalabra = 180;
+const textoDescubrimiento =
+    document.getElementById("textoDescubrimiento");
 
+const zonaCaja =
+    document.getElementById("zonaCaja");
 
-    /* =====================================================
-       ESTADO
-    ====================================================== */
+const contenedorCorazonesCaja =
+    document.getElementById("contenedorCorazonesCaja");
 
-    let presentacionIniciada = false;
-    let pausado = false;
 
-    let tareas = [];
+/* FLORES */
 
-    let posicionIntro = 0;
-    let escribiendoIntro = false;
+const fraseFlor1 =
+    document.getElementById("fraseFlor1");
 
-    let posicionFinal = 0;
-    let escribiendoFinal = false;
+const fraseFlor2 =
+    document.getElementById("fraseFlor2");
 
-    let indicePalabra = 0;
-    let escribiendoDistancia = false;
+const fraseFlor3 =
+    document.getElementById("fraseFlor3");
 
-    let intervaloPortada = null;
+const separadorFlores =
+    document.getElementById("separadorFlores");
 
+const btnARecuerdos =
+    document.getElementById("btnARecuerdos");
 
-    /* =====================================================
-       TEXTO PORTADA
-    ====================================================== */
 
-    function escribirPortada() {
+/* RECUERDOS */
 
-        textoPortada.textContent = "";
+const recuerdos =
+    document.querySelectorAll(".recuerdo");
 
-        let posicion = 0;
+const ayudaPausa =
+    document.getElementById("ayudaPausa");
 
-        clearInterval(intervaloPortada);
+const indicadorPausa =
+    document.getElementById("indicadorPausa");
 
-        intervaloPortada = setInterval(function () {
 
-            if (posicion < mensajePortada.length) {
+/* JUEGO */
 
-                textoPortada.textContent +=
-                    mensajePortada.charAt(posicion);
+const tableroTulipanes =
+    document.getElementById("tableroTulipanes");
 
-                posicion++;
+const mensajeJuego =
+    document.getElementById("mensajeJuego");
 
-            } else {
+const btnDespuesJuego =
+    document.getElementById("btnDespuesJuego");
 
-                clearInterval(intervaloPortada);
-            }
 
-        }, velocidadPortada);
-    }
+/* FOTO FINAL */
 
+const btnAFotoFinal =
+    document.getElementById("btnAFotoFinal");
 
-    /* =====================================================
-       PROGRAMADOR DE TAREAS
-    ====================================================== */
+const antesTerminar =
+    document.getElementById("antesTerminar");
 
-    function esperar(funcion, tiempo) {
+const fotoDestacada =
+    document.getElementById("fotoDestacada");
 
-        const tarea = {
+const fraseFotoFinal =
+    document.getElementById("fraseFotoFinal");
 
-            funcion: funcion,
-            restante: tiempo,
-            inicio: Date.now(),
-            id: null,
-            terminada: false
+const btnAlFinal =
+    document.getElementById("btnAlFinal");
 
-        };
 
-        tarea.id = setTimeout(function () {
+/* FINAL */
 
-            tarea.terminada = true;
-            funcion();
+const preguntaFinal =
+    document.getElementById("preguntaFinal");
 
-        }, tiempo);
+const btnSi =
+    document.getElementById("btnSi");
 
-        tareas.push(tarea);
+const btnPoquito =
+    document.getElementById("btnPoquito");
 
-        return tarea;
-    }
+const respuestaFinal =
+    document.getElementById("respuestaFinal");
 
+const btnRepetir =
+    document.getElementById("btnRepetir");
 
-    /* =====================================================
-       PAUSAR TAREAS
-    ====================================================== */
 
-    function pausarTareas() {
+/* EFECTOS */
 
-        const ahora = Date.now();
+const capaEfectos =
+    document.getElementById("capaEfectos");
 
-        tareas.forEach(function (tarea) {
 
-            if (!tarea.terminada && tarea.id !== null) {
+/* =========================================================
+   VARIABLES
+========================================================= */
 
-                clearTimeout(tarea.id);
+let musicaIniciada = false;
 
-                const transcurrido =
-                    ahora - tarea.inicio;
+let abriendoSorpresa = false;
 
-                tarea.restante =
-                    Math.max(
-                        0,
-                        tarea.restante - transcurrido
-                    );
+let recuerdoActual = 0;
 
-                tarea.id = null;
-            }
-        });
-    }
+let temporizadorRecuerdo = null;
 
+let inicioTemporizadorRecuerdo = 0;
 
-    /* =====================================================
-       REANUDAR TAREAS
-    ====================================================== */
+let tiempoRestanteRecuerdo = 5000;
 
-    function reanudarTareas() {
+let recuerdosPausados = false;
 
-        tareas.forEach(function (tarea) {
+let fraseRecuerdoTerminada = false;
 
-            if (!tarea.terminada && tarea.id === null) {
+let juegoResuelto = false;
 
-                tarea.inicio = Date.now();
+let ayudaPausaMostrada = false;
 
-                tarea.id = setTimeout(function () {
+const temporizadores = [];
 
-                    tarea.terminada = true;
-                    tarea.funcion();
 
-                }, tarea.restante);
-            }
-        });
-    }
+/* =========================================================
+   UTILIDADES
+========================================================= */
 
+function esperar(ms) {
 
-    /* =====================================================
-       CANCELAR TAREAS
-    ====================================================== */
+    return new Promise(resolve => {
 
-    function cancelarTareas() {
+        const id = setTimeout(() => {
 
-        tareas.forEach(function (tarea) {
+            resolve();
 
-            if (tarea.id !== null) {
+        }, ms);
 
-                clearTimeout(tarea.id);
-            }
-        });
+        temporizadores.push(id);
 
-        tareas = [];
-    }
+    });
 
+}
 
-    /* =====================================================
-       MOSTRAR ESCENA
-    ====================================================== */
 
-    function mostrarEscena(escena) {
+function programar(callback, tiempo) {
 
-        if (!escena) {
-            return;
+    const id = setTimeout(callback, tiempo);
+
+    temporizadores.push(id);
+
+    return id;
+
+}
+
+
+/* =========================================================
+   ESCRIBIR TEXTO
+========================================================= */
+
+async function escribirTexto(
+    elemento,
+    texto,
+    velocidad = 42
+) {
+
+    if (!elemento) return;
+
+    elemento.textContent = "";
+
+    elemento.classList.add("escribiendo");
+
+    for (
+        let i = 0;
+        i < texto.length;
+        i++
+    ) {
+
+        elemento.textContent += texto[i];
+
+        let pausa = velocidad;
+
+        if (
+            texto[i] === "." ||
+            texto[i] === "…" ||
+            texto[i] === ","
+        ) {
+            pausa += 100;
         }
 
-        document
-            .querySelectorAll(".escena")
-            .forEach(function (elemento) {
+        await esperar(pausa);
 
-                elemento.classList.remove("activa");
-
-            });
-
-        escena.classList.add("activa");
     }
 
+    elemento.classList.remove("escribiendo");
 
-    /* =====================================================
-       TEXTO INTRO
-    ====================================================== */
-
-    function iniciarTextoIntro() {
-
-        textoIntro.textContent = "";
-
-        posicionIntro = 0;
-        escribiendoIntro = true;
-
-        escribirSiguienteIntro();
-    }
+}
 
 
-    function escribirSiguienteIntro() {
+/* =========================================================
+   PROGRESO
+========================================================= */
 
-        if (!escribiendoIntro || pausado) {
-            return;
+function actualizarProgreso(indice) {
+
+    puntos.forEach((punto, i) => {
+
+        punto.classList.remove(
+            "activo",
+            "completo"
+        );
+
+        if (i < indice) {
+
+            punto.classList.add("completo");
+
         }
 
-        if (posicionIntro < mensajeIntro.length) {
+        if (i === indice) {
 
-            textoIntro.textContent +=
-                mensajeIntro.charAt(posicionIntro);
+            punto.classList.add("activo");
 
-            posicionIntro++;
+        }
 
-            esperar(
-                escribirSiguienteIntro,
-                velocidadIntro
+    });
+
+}
+
+
+/* =========================================================
+   CAMBIAR ESCENA
+========================================================= */
+
+function mostrarEscena(escena) {
+
+    escenas.forEach(item => {
+
+        item.classList.remove("activa");
+
+    });
+
+    escena.classList.add("activa");
+
+}
+
+
+/* =========================================================
+   PARTÍCULAS DEL INICIO
+========================================================= */
+
+function crearParticulasInicio() {
+
+    if (!particulasInicio) return;
+
+    particulasInicio.innerHTML = "";
+
+    const cantidad =
+        window.innerWidth <= 700
+            ? 7
+            : 10;
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        const particula =
+            document.createElement("span");
+
+        const esDestello =
+            Math.random() > 0.55;
+
+        particula.className =
+            "particula-inicio";
+
+        if (esDestello) {
+
+            particula.classList.add("destello");
+
+            particula.textContent = "✦";
+
+            particula.style.setProperty(
+                "--tamano",
+                `${8 + Math.random() * 8}px`
             );
+
+        }
+
+        /*
+           Evitamos el centro para no competir
+           visualmente con el texto.
+        */
+
+        let x;
+
+        if (Math.random() > 0.5) {
+
+            x =
+                5 +
+                Math.random() * 24;
 
         } else {
 
-            escribiendoIntro = false;
-        }
-    }
+            x =
+                71 +
+                Math.random() * 24;
 
-
-    /* =====================================================
-       FRASE DE DISTANCIA
-    ====================================================== */
-
-    function prepararFraseDistancia() {
-
-        fraseDistancia.innerHTML = "";
-
-        const palabras =
-            mensajeDistancia.split(" ");
-
-        palabras.forEach(function (palabra) {
-
-            const span =
-                document.createElement("span");
-
-            span.className =
-                "palabra-distancia";
-
-            span.textContent = palabra;
-
-            fraseDistancia.appendChild(span);
-
-            fraseDistancia.appendChild(
-                document.createTextNode(" ")
-            );
-        });
-
-        indicePalabra = 0;
-        escribiendoDistancia = true;
-
-        mostrarSiguientePalabra();
-    }
-
-
-    function mostrarSiguientePalabra() {
-
-        if (!escribiendoDistancia || pausado) {
-            return;
         }
 
-        const palabras =
-            fraseDistancia.querySelectorAll(
-                ".palabra-distancia"
-            );
+        const y =
+            15 +
+            Math.random() * 70;
 
-        if (indicePalabra < palabras.length) {
+        particula.style.left =
+            `${x}%`;
 
-            palabras[indicePalabra]
-                .classList.add("visible");
+        particula.style.top =
+            `${y}%`;
 
-            indicePalabra++;
+        particula.style.setProperty(
+            "--duracion",
+            `${4 + Math.random() * 4}s`
+        );
 
-            esperar(
-                mostrarSiguientePalabra,
-                velocidadPalabra
-            );
+        particula.style.setProperty(
+            "--retraso",
+            `${Math.random() * 4}s`
+        );
 
-        } else {
+        particulasInicio.appendChild(
+            particula
+        );
 
-            escribiendoDistancia = false;
-        }
     }
 
+}
 
-    /* =====================================================
-       TEXTO FINAL
-    ====================================================== */
 
-    function iniciarTextoFinal() {
+/* =========================================================
+   PRESENTACIÓN INICIAL
+========================================================= */
 
-        textoFinal.textContent = "";
+async function iniciarPresentacion() {
 
-        posicionFinal = 0;
-        escribiendoFinal = true;
+    tituloInicio.textContent = "";
 
-        escribirSiguienteFinal();
+    descripcionInicio.textContent = "";
+
+    btnAbrir.classList.remove("visible");
+
+    pistaInicio.classList.remove("visible");
+
+    separadorInicio.classList.remove("visible");
+
+    destelloPresentacion.classList.remove(
+        "visible"
+    );
+
+    etiquetaInicio.classList.remove(
+        "visible"
+    );
+
+
+    crearParticulasInicio();
+
+
+    /* 1. Aparece ✦ */
+
+    await esperar(500);
+
+    destelloPresentacion.classList.add(
+        "visible"
+    );
+
+
+    /* 2. Aparece TENGO ALGO PARA TI */
+
+    await esperar(550);
+
+    etiquetaInicio.classList.add(
+        "visible"
+    );
+
+
+    /* 3. Se escribe Marí... */
+
+    await esperar(550);
+
+    await escribirTexto(
+        tituloInicio,
+        "Marí, tienes una pequeña sorpresa.",
+        55
+    );
+
+
+    /* 4. Segunda frase */
+
+    await esperar(350);
+
+    await escribirTexto(
+        descripcionInicio,
+        "Pero primero tienes que descubrirla…",
+        40
+    );
+
+
+    /* 5. Línea dorada */
+
+    await esperar(300);
+
+    separadorInicio.classList.add(
+        "visible"
+    );
+
+
+    /* 6. Botón */
+
+    await esperar(550);
+
+    btnAbrir.classList.add("visible");
+
+
+    /* 7. Pista */
+
+    await esperar(600);
+
+    pistaInicio.classList.add("visible");
+
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+async function iniciarMusica() {
+
+    if (musicaIniciada) return;
+
+    musicaIniciada = true;
+
+    musica.volume = 0;
+
+    try {
+
+        await musica.play();
+
+        subirVolumen(
+            0.22,
+            1800
+        );
+
+    } catch (error) {
+
+        console.log(
+            "El navegador bloqueó temporalmente el audio.",
+            error
+        );
+
     }
 
-
-    function escribirSiguienteFinal() {
-
-        if (!escribiendoFinal || pausado) {
-            return;
-        }
-
-        if (posicionFinal < mensajeFinal.length) {
-
-            textoFinal.textContent +=
-                mensajeFinal.charAt(posicionFinal);
-
-            posicionFinal++;
-
-            esperar(
-                escribirSiguienteFinal,
-                velocidadFinal
-            );
-
-        } else {
-
-            escribiendoFinal = false;
-
-            mostrarElementosFinales();
-        }
-    }
+}
 
 
-    /* =====================================================
-       ELEMENTOS FINALES
-    ====================================================== */
+function subirVolumen(
+    volumenFinal,
+    duracion
+) {
 
-    function mostrarElementosFinales() {
+    const pasos = 30;
 
-        esperar(function () {
+    const intervalo =
+        duracion / pasos;
 
-            corazonFinal.classList.add("visible");
+    let paso = 0;
 
-        }, 450);
+    const volumenInicial =
+        musica.volume;
 
+    const diferencia =
+        volumenFinal -
+        volumenInicial;
 
-        esperar(function () {
+    const id = setInterval(() => {
 
-            firma.classList.add("visible");
+        paso++;
 
-        }, 1100);
-
-
-        esperar(function () {
-
-            btnVolver.classList.add("visible");
-
-        }, 1900);
-
-
-        esperar(function () {
-
-            luzFinal.classList.add("visible");
-
-        }, 2200);
-
-
-        esperar(function () {
-
-            bajarMusica();
-
-        }, 5900);
-    }
-
-
-    /* =====================================================
-       BAJAR MÚSICA
-    ====================================================== */
-
-    function bajarMusica() {
-
-        const volumenInicial = musica.volume;
-        const pasos = 20;
-
-        let paso = 0;
-
-        function reducir() {
-
-            if (pausado) {
-                return;
-            }
-
-            paso++;
-
-            musica.volume =
+        musica.volume =
+            Math.min(
+                1,
                 Math.max(
                     0,
-                    volumenInicial *
-                    (1 - paso / pasos)
-                );
+                    volumenInicial +
+                    diferencia *
+                    (paso / pasos)
+                )
+            );
 
-            if (paso < pasos) {
+        if (paso >= pasos) {
 
-                esperar(reducir, 100);
+            clearInterval(id);
 
-            } else {
+            musica.volume =
+                volumenFinal;
 
-                musica.pause();
-                musica.volume = 0.38;
-            }
         }
 
-        reducir();
-    }
+    }, intervalo);
+
+}
 
 
-    /* =====================================================
-       INICIAR PRESENTACIÓN
-    ====================================================== */
+function bajarVolumen(
+    volumenFinal,
+    duracion,
+    callback
+) {
 
-    function iniciarPresentacion() {
+    const pasos = 30;
 
-        cancelarTareas();
+    const intervalo =
+        duracion / pasos;
 
-        presentacionIniciada = true;
-        pausado = false;
+    let paso = 0;
 
-        detalle.classList.remove("pausado");
+    const volumenInicial =
+        musica.volume;
 
-        portada.classList.add("oculta");
-        detalle.classList.add("visible");
+    const diferencia =
+        volumenInicial -
+        volumenFinal;
 
+    const id = setInterval(() => {
 
-        /* MÚSICA */
+        paso++;
 
-        musica.pause();
-        musica.currentTime = 0;
-        musica.volume = 0.38;
-
-        musica.play().catch(function () {
-
-            console.log(
-                "La música no pudo reproducirse."
-            );
-        });
-
-
-        /* INTRO */
-
-        mostrarEscena(escenaIntro);
-
-        iniciarTextoIntro();
-
-
-        /* FOTO 1 */
-
-        esperar(function () {
-
-            mostrarEscena(escenaFoto1);
-
-        }, tiempoIntro);
-
-
-        /* FOTO 2 - NUEVA */
-
-        esperar(function () {
-
-            mostrarEscena(escenaFoto2);
-
-        },
-        tiempoIntro +
-        tiempoFoto1);
-
-
-        /* FOTO 3 */
-
-        esperar(function () {
-
-            mostrarEscena(escenaFoto3);
-
-        },
-        tiempoIntro +
-        tiempoFoto1 +
-        tiempoFoto2);
-
-
-        /* FRASE DE DISTANCIA */
-
-        esperar(function () {
-
-            mostrarEscena(
-                escenaDistancia
+        musica.volume =
+            Math.max(
+                volumenFinal,
+                volumenInicial -
+                diferencia *
+                (paso / pasos)
             );
 
-            prepararFraseDistancia();
+        if (paso >= pasos) {
 
-        },
-        tiempoIntro +
-        tiempoFoto1 +
-        tiempoFoto2 +
-        tiempoFoto3);
+            clearInterval(id);
 
+            musica.volume =
+                volumenFinal;
 
-        /* TULIPANES */
+            if (callback) callback();
 
-        esperar(function () {
-
-            mostrarEscena(
-                escenaTulipanes
-            );
-
-        },
-        tiempoIntro +
-        tiempoFoto1 +
-        tiempoFoto2 +
-        tiempoFoto3 +
-        tiempoDistancia);
-
-
-        /* FINAL */
-
-        esperar(function () {
-
-            mostrarEscena(
-                escenaFinal
-            );
-
-            iniciarTextoFinal();
-
-        },
-        tiempoIntro +
-        tiempoFoto1 +
-        tiempoFoto2 +
-        tiempoFoto3 +
-        tiempoDistancia +
-        tiempoTulipanes);
-    }
-
-
-    /* =====================================================
-       PAUSAR PRESENTACIÓN
-    ====================================================== */
-
-    function pausarPresentacion() {
-
-        if (!presentacionIniciada || pausado) {
-            return;
         }
 
-        pausado = true;
+    }, intervalo);
 
-        pausarTareas();
-
-        musica.pause();
-
-        detalle.classList.add("pausado");
-    }
+}
 
 
-    /* =====================================================
-       CONTINUAR PRESENTACIÓN
-    ====================================================== */
+/* =========================================================
+   ABRIR SORPRESA
+========================================================= */
 
-    function continuarPresentacion() {
+btnAbrir.addEventListener(
+    "click",
+    async () => {
 
-        if (!presentacionIniciada || !pausado) {
-            return;
-        }
+        if (abriendoSorpresa) return;
 
-        pausado = false;
-
-        detalle.classList.remove("pausado");
-
-        musica.play().catch(function () {
-
-            console.log(
-                "La música no pudo continuar."
-            );
-        });
-
-        reanudarTareas();
+        abriendoSorpresa = true;
 
 
         /*
-           CONTINUAR TEXTOS SI SE PAUSÓ
-           MIENTRAS SE ESTABAN ESCRIBIENDO
+           El audio empieza aquí porque es
+           interacción directa del usuario.
+           Esto ayuda especialmente en iPhone.
         */
 
-        if (escribiendoIntro) {
-
-            escribirSiguienteIntro();
-        }
-
-        if (escribiendoDistancia) {
-
-            mostrarSiguientePalabra();
-        }
-
-        if (escribiendoFinal) {
-
-            escribirSiguienteFinal();
-        }
-    }
+        iniciarMusica();
 
 
-    /* =====================================================
-       REINICIAR PRESENTACIÓN
-    ====================================================== */
-
-    function reiniciarPresentacion() {
-
-        cancelarTareas();
-
-        presentacionIniciada = false;
-        pausado = false;
-
-        escribiendoIntro = false;
-        escribiendoDistancia = false;
-        escribiendoFinal = false;
-
-
-        /* OCULTAR PRESENTACIÓN */
-
-        detalle.classList.remove(
-            "visible",
-            "pausado"
+        momentoPresentacion.classList.add(
+            "saliendo"
         );
 
 
-        /* MOSTRAR PORTADA */
-
-        portada.classList.remove("oculta");
+        await esperar(650);
 
 
-        /* REINICIAR ESCENAS */
+        momentoPresentacion.classList.remove(
+            "activo"
+        );
 
-        document
-            .querySelectorAll(".escena")
-            .forEach(function (escena) {
-
-                escena.classList.remove("activa");
-
-            });
-
-        escenaIntro.classList.add("activa");
+        momentoCaja.classList.add(
+            "activo"
+        );
 
 
-        /* LIMPIAR TEXTOS */
-
-        textoIntro.textContent = "";
-        textoFinal.textContent = "";
-        fraseDistancia.innerHTML = "";
+        await esperar(800);
 
 
-        /* LIMPIAR FINAL */
+        await escribirTexto(
+            textoDescubrimiento,
+            "A ver qué hay aquí…",
+            65
+        );
 
-        corazonFinal.classList.remove("visible");
-        firma.classList.remove("visible");
-        btnVolver.classList.remove("visible");
-        luzFinal.classList.remove("visible");
+
+        await esperar(450);
 
 
-        /* REINICIAR MÚSICA */
+        zonaCaja.classList.add(
+            "abierta"
+        );
+
+
+        explosionCorazones();
+
+        crearChispas(
+            window.innerWidth / 2,
+            window.innerHeight / 2,
+            18
+        );
+
+
+        await esperar(1300);
+
+
+        crearChispas(
+            window.innerWidth / 2,
+            window.innerHeight * 0.42,
+            12
+        );
+
+
+        await esperar(2600);
+
+
+        momentoCaja.classList.add(
+            "saliendo"
+        );
+
+
+        await esperar(550);
+
+
+        progreso.classList.remove(
+            "ocultar-progreso"
+        );
+
+        actualizarProgreso(1);
+
+        mostrarEscena(
+            escenaFlores
+        );
+
+
+        crearPetalos(6);
+
+
+        await esperar(1400);
+
+
+        iniciarTextosFlores();
+
+    }
+);
+
+
+/* =========================================================
+   EXPLOSIÓN DE CORAZONES
+========================================================= */
+
+function explosionCorazones() {
+
+    const total =
+        window.innerWidth <= 700
+            ? 320
+            : 414;
+
+    const grupos = 9;
+
+    const porGrupo =
+        Math.ceil(
+            total / grupos
+        );
+
+    for (
+        let grupo = 0;
+        grupo < grupos;
+        grupo++
+    ) {
+
+        programar(() => {
+
+            for (
+                let i = 0;
+                i < porGrupo;
+                i++
+            ) {
+
+                crearCorazonCaja();
+
+            }
+
+        }, grupo * 115);
+
+    }
+
+}
+
+
+function crearCorazonCaja() {
+
+    const corazon =
+        document.createElement("span");
+
+    corazon.className =
+        "corazon-caja";
+
+    corazon.textContent =
+        Math.random() > 0.15
+            ? "♥"
+            : "✦";
+
+
+    const variante =
+        Math.floor(
+            Math.random() * 4
+        );
+
+    if (variante === 1) {
+
+        corazon.classList.add(
+            "durazno"
+        );
+
+    }
+
+    if (variante === 2) {
+
+        corazon.classList.add(
+            "crema"
+        );
+
+    }
+
+    if (variante === 3) {
+
+        corazon.classList.add(
+            "claro"
+        );
+
+    }
+
+
+    const x =
+        (
+            Math.random() - 0.5
+        ) *
+        (
+            window.innerWidth <= 700
+                ? 330
+                : 520
+        );
+
+    const y =
+        -(
+            120 +
+            Math.random() *
+            (
+                window.innerWidth <= 700
+                    ? 430
+                    : 520
+            )
+        );
+
+    const escala =
+        0.45 +
+        Math.random() * 1.6;
+
+    const rotacion =
+        (
+            Math.random() - 0.5
+        ) *
+        240;
+
+    const tiempo =
+        1.5 +
+        Math.random() * 1.7;
+
+
+    corazon.style.fontSize =
+        `${8 + Math.random() * 18}px`;
+
+    corazon.style.setProperty(
+        "--x",
+        `${x}px`
+    );
+
+    corazon.style.setProperty(
+        "--y",
+        `${y}px`
+    );
+
+    corazon.style.setProperty(
+        "--escala",
+        escala
+    );
+
+    corazon.style.setProperty(
+        "--rotacion",
+        `${rotacion}deg`
+    );
+
+    corazon.style.setProperty(
+        "--tiempo",
+        `${tiempo}s`
+    );
+
+
+    contenedorCorazonesCaja.appendChild(
+        corazon
+    );
+
+
+    programar(() => {
+
+        corazon.remove();
+
+    }, tiempo * 1000 + 200);
+
+}
+
+
+/* =========================================================
+   TEXTOS FLORES
+========================================================= */
+
+async function iniciarTextosFlores() {
+
+    fraseFlor1.textContent = "";
+    fraseFlor2.textContent = "";
+    fraseFlor3.textContent = "";
+
+    separadorFlores.classList.remove(
+        "visible"
+    );
+
+    btnARecuerdos.classList.remove(
+        "visible"
+    );
+
+
+    await escribirTexto(
+        fraseFlor1,
+        "No necesitaba ser una fecha especial para prepararte algo.",
+        35
+    );
+
+
+    await esperar(400);
+
+
+    separadorFlores.classList.add(
+        "visible"
+    );
+
+
+    await esperar(450);
+
+
+    await escribirTexto(
+        fraseFlor2,
+        "Dicen que las flores amarillas tienen un significado especial…",
+        31
+    );
+
+
+    await esperar(300);
+
+
+    await escribirTexto(
+        fraseFlor3,
+        "Pero yo solo quería encontrar una excusa para regalarte unas.",
+        31
+    );
+
+
+    await esperar(500);
+
+
+    btnARecuerdos.classList.add(
+        "visible"
+    );
+
+}
+
+
+/* =========================================================
+   IR A RECUERDOS
+========================================================= */
+
+btnARecuerdos.addEventListener(
+    "click",
+    async () => {
+
+        actualizarProgreso(2);
+
+        mostrarEscena(
+            escenaPuente
+        );
+
+
+        await esperar(2700);
+
+
+        mostrarEscena(
+            escenaRecuerdos
+        );
+
+
+        await esperar(550);
+
+
+        recuerdoActual = 0;
+
+        mostrarRecuerdo(
+            recuerdoActual
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RECUERDOS
+========================================================= */
+
+async function mostrarRecuerdo(indice) {
+
+    limpiarTemporizadorRecuerdo();
+
+    fraseRecuerdoTerminada = false;
+
+    tiempoRestanteRecuerdo = 5000;
+
+
+    recuerdos.forEach(recuerdo => {
+
+        recuerdo.classList.remove(
+            "activo",
+            "visible",
+            "frase-visible"
+        );
+
+        const texto =
+            recuerdo.querySelector(
+                ".texto-recuerdo"
+            );
+
+        if (texto) {
+
+            texto.textContent = "";
+
+            texto.classList.remove(
+                "escribiendo"
+            );
+
+        }
+
+    });
+
+
+    const actual =
+        recuerdos[indice];
+
+    if (!actual) return;
+
+
+    actual.classList.add(
+        "activo"
+    );
+
+
+    await esperar(100);
+
+
+    if (
+        !escenaRecuerdos.classList.contains(
+            "activa"
+        )
+    ) {
+        return;
+    }
+
+
+    actual.classList.add(
+        "visible"
+    );
+
+
+    /*
+       Mostramos la ayuda una sola vez.
+    */
+
+    if (!ayudaPausaMostrada) {
+
+        ayudaPausaMostrada = true;
+
+        programar(() => {
+
+            ayudaPausa.classList.add(
+                "visible"
+            );
+
+        }, 1700);
+
+        programar(() => {
+
+            ayudaPausa.classList.remove(
+                "visible"
+            );
+
+        }, 6000);
+
+    }
+
+
+    await esperar(1150);
+
+
+    if (
+        !escenaRecuerdos.classList.contains(
+            "activa"
+        )
+    ) {
+        return;
+    }
+
+
+    actual.classList.add(
+        "frase-visible"
+    );
+
+
+    const texto =
+        actual.querySelector(
+            ".texto-recuerdo"
+        );
+
+    const contenido =
+        texto.dataset.text;
+
+
+    await escribirTexto(
+        texto,
+        contenido,
+        38
+    );
+
+
+    fraseRecuerdoTerminada = true;
+
+
+    /*
+       Los 5 segundos comienzan
+       únicamente cuando terminó
+       de escribirse la frase.
+    */
+
+    if (!recuerdosPausados) {
+
+        iniciarTiempoRecuerdo(
+            5000
+        );
+
+    }
+
+}
+
+
+function iniciarTiempoRecuerdo(tiempo) {
+
+    limpiarTemporizadorRecuerdo();
+
+    tiempoRestanteRecuerdo =
+        tiempo;
+
+    inicioTemporizadorRecuerdo =
+        Date.now();
+
+
+    temporizadorRecuerdo =
+        setTimeout(() => {
+
+            avanzarRecuerdo();
+
+        }, tiempo);
+
+}
+
+
+function limpiarTemporizadorRecuerdo() {
+
+    if (temporizadorRecuerdo) {
+
+        clearTimeout(
+            temporizadorRecuerdo
+        );
+
+        temporizadorRecuerdo = null;
+
+    }
+
+}
+
+
+async function avanzarRecuerdo() {
+
+    limpiarTemporizadorRecuerdo();
+
+
+    const actual =
+        recuerdos[recuerdoActual];
+
+
+    if (actual) {
+
+        actual.classList.remove(
+            "visible",
+            "frase-visible"
+        );
+
+    }
+
+
+    await esperar(700);
+
+
+    recuerdoActual++;
+
+
+    if (
+        recuerdoActual <
+        recuerdos.length
+    ) {
+
+        mostrarRecuerdo(
+            recuerdoActual
+        );
+
+        return;
+
+    }
+
+
+    await esperar(1100);
+
+
+    actualizarProgreso(3);
+
+    mostrarEscena(
+        escenaJuego
+    );
+
+    prepararJuego();
+
+}
+
+
+/* =========================================================
+   PAUSAR RECUERDOS
+========================================================= */
+
+escenaRecuerdos.addEventListener(
+    "click",
+    evento => {
+
+        /*
+           Evitamos pausar por accidente
+           si algún día agregamos botones.
+        */
+
+        if (
+            evento.target.closest(
+                "button"
+            )
+        ) {
+            return;
+        }
+
+
+        if (recuerdosPausados) {
+
+            reanudarRecuerdos();
+
+        } else {
+
+            pausarRecuerdos();
+
+        }
+
+    }
+);
+
+
+function pausarRecuerdos() {
+
+    recuerdosPausados = true;
+
+
+    if (temporizadorRecuerdo) {
+
+        const transcurrido =
+            Date.now() -
+            inicioTemporizadorRecuerdo;
+
+        tiempoRestanteRecuerdo =
+            Math.max(
+                0,
+                tiempoRestanteRecuerdo -
+                transcurrido
+            );
+
+        limpiarTemporizadorRecuerdo();
+
+    }
+
+
+    if (!musica.paused) {
 
         musica.pause();
-        musica.currentTime = 0;
-        musica.volume = 0.38;
 
-
-        /* REINICIAR PORTADA */
-
-        escribirPortada();
     }
 
 
-    /* =====================================================
-       BOTÓN VER DETALLE
-    ====================================================== */
+    mostrarIndicadorPausa(
+        "❚❚"
+    );
 
-    if (btnIniciar) {
+}
 
-        btnIniciar.addEventListener(
+
+async function reanudarRecuerdos() {
+
+    recuerdosPausados = false;
+
+
+    try {
+
+        await musica.play();
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+
+    mostrarIndicadorPausa(
+        "▶"
+    );
+
+
+    /*
+       Si la frase ya terminó,
+       continuamos el tiempo restante.
+
+       Esto también corrige el caso
+       de pausar mientras se escribía.
+    */
+
+    if (fraseRecuerdoTerminada) {
+
+        iniciarTiempoRecuerdo(
+            tiempoRestanteRecuerdo > 0
+                ? tiempoRestanteRecuerdo
+                : 5000
+        );
+
+    }
+
+}
+
+
+function mostrarIndicadorPausa(icono) {
+
+    indicadorPausa.textContent =
+        icono;
+
+    indicadorPausa.classList.add(
+        "visible"
+    );
+
+
+    programar(() => {
+
+        indicadorPausa.classList.remove(
+            "visible"
+        );
+
+    }, 650);
+
+}
+
+
+/* =========================================================
+   JUEGO
+========================================================= */
+
+function prepararJuego() {
+
+    tableroTulipanes.innerHTML = "";
+
+    tableroTulipanes.classList.remove(
+        "resuelto"
+    );
+
+    mensajeJuego.textContent = "";
+
+    btnDespuesJuego.classList.add(
+        "oculto"
+    );
+
+    juegoResuelto = false;
+
+
+    const total = 6;
+
+    const diferente =
+        Math.floor(
+            Math.random() * total
+        );
+
+
+    for (
+        let i = 0;
+        i < total;
+        i++
+    ) {
+
+        const boton =
+            document.createElement(
+                "button"
+            );
+
+        boton.type =
+            "button";
+
+        boton.className =
+            "tulipan-juego";
+
+        boton.setAttribute(
+            "aria-label",
+            "Tulipán"
+        );
+
+
+        if (i === diferente) {
+
+            boton.classList.add(
+                "diferente"
+            );
+
+        }
+
+
+        boton.innerHTML = `
+            <span class="flor-tulipan">
+                <span class="petalo petalo-izq"></span>
+                <span class="petalo petalo-centro"></span>
+                <span class="petalo petalo-der"></span>
+            </span>
+
+            <span class="tallo"></span>
+
+            <span class="hoja hoja-izq"></span>
+            <span class="hoja hoja-der"></span>
+        `;
+
+
+        boton.addEventListener(
             "click",
-            function (evento) {
+            () => {
 
-                evento.preventDefault();
-                evento.stopPropagation();
+                comprobarTulipan(
+                    boton,
+                    i === diferente
+                );
 
-                iniciarPresentacion();
             }
         );
+
+
+        tableroTulipanes.appendChild(
+            boton
+        );
+
+    }
+
+}
+
+
+function comprobarTulipan(
+    boton,
+    correcto
+) {
+
+    if (juegoResuelto) return;
+
+
+    if (!correcto) {
+
+        boton.classList.remove(
+            "error"
+        );
+
+        void boton.offsetWidth;
+
+        boton.classList.add(
+            "error"
+        );
+
+        mensajeJuego.textContent =
+            "Mmm… ese parece igual 👀";
+
+        return;
+
     }
 
 
-    /* =====================================================
-       BOTÓN VOLVER A VER
-    ====================================================== */
+    juegoResuelto = true;
 
-    if (btnVolver) {
 
-        btnVolver.addEventListener(
-            "click",
-            function (evento) {
+    boton.classList.add(
+        "correcto"
+    );
 
-                evento.preventDefault();
-                evento.stopPropagation();
+    tableroTulipanes.classList.add(
+        "resuelto"
+    );
 
-                reiniciarPresentacion();
+
+    mensajeJuego.textContent =
+        "Sabía que lo encontrarías 😌";
+
+
+    crearPetalos(14);
+
+
+    programar(() => {
+
+        btnDespuesJuego.classList.remove(
+            "oculto"
+        );
+
+    }, 800);
+
+}
+
+
+/* =========================================================
+   DESPUÉS DEL JUEGO
+========================================================= */
+
+btnDespuesJuego.addEventListener(
+    "click",
+    () => {
+
+        actualizarProgreso(4);
+
+        mostrarEscena(
+            escenaMensaje
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FOTO FINAL
+========================================================= */
+
+btnAFotoFinal.addEventListener(
+    "click",
+    async () => {
+
+        actualizarProgreso(5);
+
+        antesTerminar.classList.remove(
+            "ocultar"
+        );
+
+        fotoDestacada.classList.remove(
+            "visible"
+        );
+
+        fraseFotoFinal.textContent = "";
+
+        btnAlFinal.classList.remove(
+            "visible"
+        );
+
+
+        mostrarEscena(
+            escenaFotoFinal
+        );
+
+
+        await esperar(1700);
+
+
+        antesTerminar.classList.add(
+            "ocultar"
+        );
+
+
+        await esperar(500);
+
+
+        fotoDestacada.classList.add(
+            "visible"
+        );
+
+
+        await esperar(1000);
+
+
+        await escribirTexto(
+            fraseFotoFinal,
+            "Creo que algunos recuerdos no necesitan demasiadas palabras para ser especiales.",
+            36
+        );
+
+
+        await esperar(400);
+
+
+        btnAlFinal.classList.add(
+            "visible"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+btnAlFinal.addEventListener(
+    "click",
+    () => {
+
+        actualizarProgreso(5);
+
+        mostrarEscena(
+            escenaFinal
+        );
+
+
+        crearPetalos(18);
+
+
+        programar(() => {
+
+            preguntaFinal.classList.add(
+                "visible"
+            );
+
+        }, 3300);
+
+    }
+);
+
+
+/* =========================================================
+   RESPUESTAS FINALES
+========================================================= */
+
+btnSi.addEventListener(
+    "click",
+    () => {
+
+        responderFinal(
+            "Entonces valió la pena hacer todo esto 😌"
+        );
+
+    }
+);
+
+
+btnPoquito.addEventListener(
+    "click",
+    () => {
+
+        responderFinal(
+            "Bueno… tendré que mejorar para la próxima 😂"
+        );
+
+    }
+);
+
+
+function responderFinal(texto) {
+
+    if (
+        btnSi.disabled ||
+        btnPoquito.disabled
+    ) {
+        return;
+    }
+
+
+    btnSi.disabled = true;
+    btnPoquito.disabled = true;
+
+
+    respuestaFinal.textContent =
+        texto;
+
+    respuestaFinal.classList.add(
+        "visible"
+    );
+
+
+    /*
+       Dejamos que la canción continúe
+       unos segundos después de responder.
+    */
+
+    programar(() => {
+
+        bajarVolumen(
+            0,
+            1200,
+            () => {
+
+                musica.pause();
+
             }
         );
-    }
+
+    }, 5000);
 
 
-    /* =====================================================
-       PAUSA INVISIBLE AL TOCAR LA PRESENTACIÓN
-    ====================================================== */
+    programar(() => {
 
-    if (detalle) {
-
-        detalle.addEventListener(
-            "click",
-            function (evento) {
-
-                if (evento.target.closest("button")) {
-                    return;
-                }
-
-                if (!presentacionIniciada) {
-                    return;
-                }
-
-                if (pausado) {
-
-                    continuarPresentacion();
-
-                } else {
-
-                    pausarPresentacion();
-                }
-            }
+        btnRepetir.classList.add(
+            "visible"
         );
+
+    }, 1600);
+
+}
+
+
+/* =========================================================
+   REPETIR
+========================================================= */
+
+btnRepetir.addEventListener(
+    "click",
+    () => {
+
+        window.location.reload();
+
+    }
+);
+
+
+/* =========================================================
+   PÉTALOS
+========================================================= */
+
+function crearPetalos(cantidad = 10) {
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        const petalo =
+            document.createElement(
+                "span"
+            );
+
+        petalo.className =
+            "petalo-efecto";
+
+
+        petalo.style.left =
+            `${Math.random() * 100}%`;
+
+
+        const duracion =
+            3.5 +
+            Math.random() * 2.8;
+
+
+        const desplazamiento =
+            (
+                Math.random() - 0.5
+            ) *
+            180;
+
+
+        petalo.style.setProperty(
+            "--duracion",
+            `${duracion}s`
+        );
+
+        petalo.style.setProperty(
+            "--desplazamiento",
+            `${desplazamiento}px`
+        );
+
+
+        petalo.style.animationDelay =
+            `${Math.random() * 0.8}s`;
+
+
+        petalo.style.transform =
+            `scale(${0.65 + Math.random() * 0.7})`;
+
+
+        capaEfectos.appendChild(
+            petalo
+        );
+
+
+        programar(() => {
+
+            petalo.remove();
+
+        }, (duracion + 1) * 1000);
+
     }
 
+}
 
-    /* =====================================================
-       INICIO
-    ====================================================== */
 
-    musica.volume = 0.38;
+/* =========================================================
+   CHISPAS
+========================================================= */
 
-    escribirPortada();
+function crearChispas(
+    x,
+    y,
+    cantidad = 12
+) {
 
-});
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        const chispa =
+            document.createElement(
+                "span"
+            );
+
+        chispa.className =
+            "chispa";
+
+        chispa.textContent =
+            Math.random() > 0.35
+                ? "✦"
+                : "•";
+
+
+        chispa.style.left =
+            `${x}px`;
+
+        chispa.style.top =
+            `${y}px`;
+
+
+        const angulo =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        const distancia =
+            70 +
+            Math.random() *
+            180;
+
+
+        chispa.style.setProperty(
+            "--x",
+            `${Math.cos(angulo) * distancia}px`
+        );
+
+        chispa.style.setProperty(
+            "--y",
+            `${Math.sin(angulo) * distancia}px`
+        );
+
+
+        chispa.style.fontSize =
+            `${8 + Math.random() * 12}px`;
+
+
+        capaEfectos.appendChild(
+            chispa
+        );
+
+
+        programar(() => {
+
+            chispa.remove();
+
+        }, 1400);
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
+
+actualizarProgreso(0);
+
+iniciarPresentacion();

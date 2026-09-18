@@ -1,1013 +1,1294 @@
-/* =========================================================
-   ELEMENTOS
-========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const musica = document.getElementById("musica");
+    /* =====================================================
+       ELEMENTOS PRINCIPALES
+    ===================================================== */
 
-const progreso = document.getElementById("progreso");
-const puntos = document.querySelectorAll(".punto");
+    const escenas = {
+        inicio: document.getElementById("escenaInicio"),
+        flores: document.getElementById("escenaFlores"),
+        puente: document.getElementById("escenaPuente"),
+        recuerdos: document.getElementById("escenaRecuerdos"),
+        juego: document.getElementById("escenaJuego"),
+        mensaje: document.getElementById("escenaMensaje"),
+        fotoFinal: document.getElementById("escenaFotoFinal"),
+        final: document.getElementById("escenaFinal")
+    };
 
-const escenaInicio = document.getElementById("escenaInicio");
-const escenaFlores = document.getElementById("escenaFlores");
-const escenaPuente = document.getElementById("escenaPuente");
-const escenaRecuerdos = document.getElementById("escenaRecuerdos");
-const escenaJuego = document.getElementById("escenaJuego");
-const escenaMensaje = document.getElementById("escenaMensaje");
-const escenaFotoFinal = document.getElementById("escenaFotoFinal");
-const escenaFinal = document.getElementById("escenaFinal");
+    const progreso = document.getElementById("progreso");
+    const puntos = progreso
+        ? [...progreso.querySelectorAll(".punto")]
+        : [];
 
-const escenas = document.querySelectorAll(".escena");
+    const musica = document.getElementById("musica");
+    const capaEfectos = document.getElementById("capaEfectos");
 
+    /* =====================================================
+       INICIO
+    ===================================================== */
 
-/* INICIO */
+    const momentoPresentacion =
+        document.getElementById("momentoPresentacion");
 
-const momentoPresentacion =
-    document.getElementById("momentoPresentacion");
+    const momentoCaja =
+        document.getElementById("momentoCaja");
 
-const momentoCaja =
-    document.getElementById("momentoCaja");
+    const btnAbrir =
+        document.getElementById("btnAbrir");
 
-const destelloPresentacion =
-    document.getElementById("destelloPresentacion");
+    const pistaInicio =
+        document.getElementById("pistaInicio");
 
-const etiquetaInicio =
-    document.getElementById("etiquetaInicio");
+    const destelloPresentacion =
+        document.getElementById("destelloPresentacion");
 
-const tituloInicio =
-    document.getElementById("tituloInicio");
+    const etiquetaInicio =
+        document.getElementById("etiquetaInicio");
 
-const descripcionInicio =
-    document.getElementById("descripcionInicio");
+    const tituloInicio =
+        document.getElementById("tituloInicio");
 
-const separadorInicio =
-    document.getElementById("separadorInicio");
+    const descripcionInicio =
+        document.getElementById("descripcionInicio");
 
-const btnAbrir =
-    document.getElementById("btnAbrir");
+    const separadorInicio =
+        document.getElementById("separadorInicio");
 
-const pistaInicio =
-    document.getElementById("pistaInicio");
+    const textoDescubrimiento =
+        document.getElementById("textoDescubrimiento");
 
-const particulasInicio =
-    document.getElementById("particulasInicio");
+    const zonaCaja =
+        document.getElementById("zonaCaja");
 
+    /* =====================================================
+       FLORES
+    ===================================================== */
 
-/* CAJA */
+    const fraseFlor1 =
+        document.getElementById("fraseFlor1");
 
-const textoDescubrimiento =
-    document.getElementById("textoDescubrimiento");
+    const fraseFlor2 =
+        document.getElementById("fraseFlor2");
 
-const zonaCaja =
-    document.getElementById("zonaCaja");
+    const fraseFlor3 =
+        document.getElementById("fraseFlor3");
 
-const contenedorCorazonesCaja =
-    document.getElementById("contenedorCorazonesCaja");
+    const separadorFlores =
+        document.getElementById("separadorFlores");
 
+    const btnARecuerdos =
+        document.getElementById("btnARecuerdos");
 
-/* FLORES */
+    /* =====================================================
+       RECUERDOS
+    ===================================================== */
 
-const fraseFlor1 =
-    document.getElementById("fraseFlor1");
+    const recuerdos =
+        [...document.querySelectorAll(".recuerdo")];
 
-const fraseFlor2 =
-    document.getElementById("fraseFlor2");
+    const ayudaPausa =
+        document.getElementById("ayudaPausa");
 
-const fraseFlor3 =
-    document.getElementById("fraseFlor3");
+    const indicadorPausa =
+        document.getElementById("indicadorPausa");
 
-const separadorFlores =
-    document.getElementById("separadorFlores");
+    /* =====================================================
+       JUEGO
+    ===================================================== */
 
-const btnARecuerdos =
-    document.getElementById("btnARecuerdos");
+    const tableroTulipanes =
+        document.getElementById("tableroTulipanes");
 
+    const mensajeJuego =
+        document.getElementById("mensajeJuego");
 
-/* RECUERDOS */
+    const btnDespuesJuego =
+        document.getElementById("btnDespuesJuego");
 
-const recuerdos =
-    document.querySelectorAll(".recuerdo");
+    /* =====================================================
+       MENSAJE / FOTO FINAL
+    ===================================================== */
 
-const ayudaPausa =
-    document.getElementById("ayudaPausa");
+    const btnAFotoFinal =
+        document.getElementById("btnAFotoFinal");
 
-const indicadorPausa =
-    document.getElementById("indicadorPausa");
+    const antesTerminar =
+        document.getElementById("antesTerminar");
 
+    const fotoDestacada =
+        document.getElementById("fotoDestacada");
 
-/* JUEGO */
+    const fraseFotoFinal =
+        document.getElementById("fraseFotoFinal");
 
-const tableroTulipanes =
-    document.getElementById("tableroTulipanes");
+    const btnAlFinal =
+        document.getElementById("btnAlFinal");
 
-const mensajeJuego =
-    document.getElementById("mensajeJuego");
+    /* =====================================================
+       FINAL
+    ===================================================== */
 
-const btnDespuesJuego =
-    document.getElementById("btnDespuesJuego");
+    const preguntaFinal =
+        document.getElementById("preguntaFinal");
 
+    const btnSi =
+        document.getElementById("btnSi");
 
-/* FOTO FINAL */
+    const btnPoquito =
+        document.getElementById("btnPoquito");
 
-const btnAFotoFinal =
-    document.getElementById("btnAFotoFinal");
+    const respuestaFinal =
+        document.getElementById("respuestaFinal");
 
-const antesTerminar =
-    document.getElementById("antesTerminar");
+    const btnRepetir =
+        document.getElementById("btnRepetir");
 
-const fotoDestacada =
-    document.getElementById("fotoDestacada");
 
-const fraseFotoFinal =
-    document.getElementById("fraseFotoFinal");
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
 
-const btnAlFinal =
-    document.getElementById("btnAlFinal");
+    let musicaIniciada = false;
 
+    let volumenMusica = 0.55;
 
-/* FINAL */
+    let indiceRecuerdo = 0;
 
-const preguntaFinal =
-    document.getElementById("preguntaFinal");
+    let recuerdosActivos = false;
 
-const btnSi =
-    document.getElementById("btnSi");
+    let recuerdosPausados = false;
 
-const btnPoquito =
-    document.getElementById("btnPoquito");
+    let temporizadorRecuerdo = null;
 
-const respuestaFinal =
-    document.getElementById("respuestaFinal");
+    let fraseRecuerdoTerminada = false;
 
-const btnRepetir =
-    document.getElementById("btnRepetir");
+    let juegoResuelto = false;
 
+    let finalRespondido = false;
 
-/* EFECTOS */
+    let bloqueandoCambio = false;
 
-const capaEfectos =
-    document.getElementById("capaEfectos");
+    let abriendoSorpresa = false;
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
+    /* =====================================================
+       UTILIDADES
+    ===================================================== */
 
-let musicaIniciada = false;
+    function esperar(ms) {
+        return new Promise(resolve =>
+            setTimeout(resolve, ms)
+        );
+    }
 
-let abriendoSorpresa = false;
 
-let recuerdoActual = 0;
+    function esMovil() {
+        return window.matchMedia(
+            "(max-width: 700px)"
+        ).matches;
+    }
 
-let temporizadorRecuerdo = null;
 
-let inicioTemporizadorRecuerdo = 0;
+    function numeroAleatorio(min, max) {
 
-let tiempoRestanteRecuerdo = 5000;
+        return Math.random() *
+            (max - min) +
+            min;
+    }
 
-let recuerdosPausados = false;
 
-let fraseRecuerdoTerminada = false;
+    /* =====================================================
+       EFECTO DE ESCRITURA
+    ===================================================== */
 
-let juegoResuelto = false;
-
-let ayudaPausaMostrada = false;
-
-const temporizadores = [];
-
-
-/* =========================================================
-   UTILIDADES
-========================================================= */
-
-function esperar(ms) {
-
-    return new Promise(resolve => {
-
-        const id = setTimeout(() => {
-
-            resolve();
-
-        }, ms);
-
-        temporizadores.push(id);
-
-    });
-
-}
-
-
-function programar(callback, tiempo) {
-
-    const id = setTimeout(callback, tiempo);
-
-    temporizadores.push(id);
-
-    return id;
-
-}
-
-
-/* =========================================================
-   ESCRIBIR TEXTO
-========================================================= */
-
-async function escribirTexto(
-    elemento,
-    texto,
-    velocidad = 42
-) {
-
-    if (!elemento) return;
-
-    elemento.textContent = "";
-
-    elemento.classList.add("escribiendo");
-
-    for (
-        let i = 0;
-        i < texto.length;
-        i++
+    async function escribirTexto(
+        elemento,
+        texto,
+        velocidad = 45
     ) {
 
-        elemento.textContent += texto[i];
+        if (!elemento) return;
 
-        let pausa = velocidad;
+        elemento.textContent = "";
+
+        elemento.classList.add(
+            "escribiendo"
+        );
+
+        for (
+            let i = 0;
+            i < texto.length;
+            i++
+        ) {
+
+            elemento.textContent +=
+                texto.charAt(i);
+
+            await esperar(velocidad);
+        }
+
+        elemento.classList.remove(
+            "escribiendo"
+        );
+    }
+
+
+    /* =====================================================
+       CAMBIO DE ESCENAS
+    ===================================================== */
+
+    async function cambiarEscena(
+        actual,
+        nueva,
+        numeroPaso
+    ) {
+
+        if (bloqueandoCambio) return;
+
+        bloqueandoCambio = true;
+
+        if (actual) {
+            actual.classList.remove(
+                "activa"
+            );
+        }
+
+        await esperar(500);
+
+        if (nueva) {
+            nueva.classList.add(
+                "activa"
+            );
+        }
 
         if (
-            texto[i] === "." ||
-            texto[i] === "…" ||
-            texto[i] === ","
+            typeof numeroPaso ===
+            "number"
         ) {
-            pausa += 100;
+            actualizarProgreso(
+                numeroPaso
+            );
         }
 
-        await esperar(pausa);
+        await esperar(100);
 
+        bloqueandoCambio = false;
     }
 
-    elemento.classList.remove("escribiendo");
 
-}
+    /* =====================================================
+       PROGRESO
+    ===================================================== */
 
+    function mostrarProgreso() {
 
-/* =========================================================
-   PROGRESO
-========================================================= */
-
-function actualizarProgreso(indice) {
-
-    puntos.forEach((punto, i) => {
-
-        punto.classList.remove(
-            "activo",
-            "completo"
-        );
-
-        if (i < indice) {
-
-            punto.classList.add("completo");
-
-        }
-
-        if (i === indice) {
-
-            punto.classList.add("activo");
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   CAMBIAR ESCENA
-========================================================= */
-
-function mostrarEscena(escena) {
-
-    escenas.forEach(item => {
-
-        item.classList.remove("activa");
-
-    });
-
-    escena.classList.add("activa");
-
-}
-
-
-/* =========================================================
-   PARTÍCULAS DEL INICIO
-========================================================= */
-
-function crearParticulasInicio() {
-
-    if (!particulasInicio) return;
-
-    particulasInicio.innerHTML = "";
-
-    const cantidad =
-        window.innerWidth <= 700
-            ? 7
-            : 10;
-
-    for (
-        let i = 0;
-        i < cantidad;
-        i++
-    ) {
-
-        const particula =
-            document.createElement("span");
-
-        const esDestello =
-            Math.random() > 0.55;
-
-        particula.className =
-            "particula-inicio";
-
-        if (esDestello) {
-
-            particula.classList.add("destello");
-
-            particula.textContent = "✦";
-
-            particula.style.setProperty(
-                "--tamano",
-                `${8 + Math.random() * 8}px`
-            );
-
-        }
-
-        /*
-           Evitamos el centro para no competir
-           visualmente con el texto.
-        */
-
-        let x;
-
-        if (Math.random() > 0.5) {
-
-            x =
-                5 +
-                Math.random() * 24;
-
-        } else {
-
-            x =
-                71 +
-                Math.random() * 24;
-
-        }
-
-        const y =
-            15 +
-            Math.random() * 70;
-
-        particula.style.left =
-            `${x}%`;
-
-        particula.style.top =
-            `${y}%`;
-
-        particula.style.setProperty(
-            "--duracion",
-            `${4 + Math.random() * 4}s`
-        );
-
-        particula.style.setProperty(
-            "--retraso",
-            `${Math.random() * 4}s`
-        );
-
-        particulasInicio.appendChild(
-            particula
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PRESENTACIÓN INICIAL
-========================================================= */
-
-async function iniciarPresentacion() {
-
-    tituloInicio.textContent = "";
-
-    descripcionInicio.textContent = "";
-
-    btnAbrir.classList.remove("visible");
-
-    pistaInicio.classList.remove("visible");
-
-    separadorInicio.classList.remove("visible");
-
-    destelloPresentacion.classList.remove(
-        "visible"
-    );
-
-    etiquetaInicio.classList.remove(
-        "visible"
-    );
-
-
-    crearParticulasInicio();
-
-
-    /* 1. Aparece ✦ */
-
-    await esperar(500);
-
-    destelloPresentacion.classList.add(
-        "visible"
-    );
-
-
-    /* 2. Aparece TENGO ALGO PARA TI */
-
-    await esperar(550);
-
-    etiquetaInicio.classList.add(
-        "visible"
-    );
-
-
-    /* 3. Se escribe Marí... */
-
-    await esperar(550);
-
-    await escribirTexto(
-        tituloInicio,
-        "Marí, tienes una pequeña sorpresa.",
-        55
-    );
-
-
-    /* 4. Segunda frase */
-
-    await esperar(350);
-
-    await escribirTexto(
-        descripcionInicio,
-        "Pero primero tienes que descubrirla…",
-        40
-    );
-
-
-    /* 5. Línea dorada */
-
-    await esperar(300);
-
-    separadorInicio.classList.add(
-        "visible"
-    );
-
-
-    /* 6. Botón */
-
-    await esperar(550);
-
-    btnAbrir.classList.add("visible");
-
-
-    /* 7. Pista */
-
-    await esperar(600);
-
-    pistaInicio.classList.add("visible");
-
-}
-
-
-/* =========================================================
-   MÚSICA
-========================================================= */
-
-async function iniciarMusica() {
-
-    if (musicaIniciada) return;
-
-    musicaIniciada = true;
-
-    musica.volume = 0;
-
-    try {
-
-        await musica.play();
-
-        subirVolumen(
-            0.22,
-            1800
-        );
-
-    } catch (error) {
-
-        console.log(
-            "El navegador bloqueó temporalmente el audio.",
-            error
-        );
-
-    }
-
-}
-
-
-function subirVolumen(
-    volumenFinal,
-    duracion
-) {
-
-    const pasos = 30;
-
-    const intervalo =
-        duracion / pasos;
-
-    let paso = 0;
-
-    const volumenInicial =
-        musica.volume;
-
-    const diferencia =
-        volumenFinal -
-        volumenInicial;
-
-    const id = setInterval(() => {
-
-        paso++;
-
-        musica.volume =
-            Math.min(
-                1,
-                Math.max(
-                    0,
-                    volumenInicial +
-                    diferencia *
-                    (paso / pasos)
-                )
-            );
-
-        if (paso >= pasos) {
-
-            clearInterval(id);
-
-            musica.volume =
-                volumenFinal;
-
-        }
-
-    }, intervalo);
-
-}
-
-
-function bajarVolumen(
-    volumenFinal,
-    duracion,
-    callback
-) {
-
-    const pasos = 30;
-
-    const intervalo =
-        duracion / pasos;
-
-    let paso = 0;
-
-    const volumenInicial =
-        musica.volume;
-
-    const diferencia =
-        volumenInicial -
-        volumenFinal;
-
-    const id = setInterval(() => {
-
-        paso++;
-
-        musica.volume =
-            Math.max(
-                volumenFinal,
-                volumenInicial -
-                diferencia *
-                (paso / pasos)
-            );
-
-        if (paso >= pasos) {
-
-            clearInterval(id);
-
-            musica.volume =
-                volumenFinal;
-
-            if (callback) callback();
-
-        }
-
-    }, intervalo);
-
-}
-
-
-/* =========================================================
-   ABRIR SORPRESA
-========================================================= */
-
-btnAbrir.addEventListener(
-    "click",
-    async () => {
-
-        if (abriendoSorpresa) return;
-
-        abriendoSorpresa = true;
-
-
-        /*
-           El audio empieza aquí porque es
-           interacción directa del usuario.
-           Esto ayuda especialmente en iPhone.
-        */
-
-        iniciarMusica();
-
-
-        momentoPresentacion.classList.add(
-            "saliendo"
-        );
-
-
-        await esperar(650);
-
-
-        momentoPresentacion.classList.remove(
-            "activo"
-        );
-
-        momentoCaja.classList.add(
-            "activo"
-        );
-
-
-        await esperar(800);
-
-
-        await escribirTexto(
-            textoDescubrimiento,
-            "A ver qué hay aquí…",
-            65
-        );
-
-
-        await esperar(450);
-
-
-        zonaCaja.classList.add(
-            "abierta"
-        );
-
-
-        explosionCorazones();
-
-        crearChispas(
-            window.innerWidth / 2,
-            window.innerHeight / 2,
-            18
-        );
-
-
-        await esperar(1300);
-
-
-        crearChispas(
-            window.innerWidth / 2,
-            window.innerHeight * 0.42,
-            12
-        );
-
-
-        await esperar(2600);
-
-
-        momentoCaja.classList.add(
-            "saliendo"
-        );
-
-
-        await esperar(550);
-
+        if (!progreso) return;
 
         progreso.classList.remove(
             "ocultar-progreso"
         );
-
-        actualizarProgreso(1);
-
-        mostrarEscena(
-            escenaFlores
-        );
-
-
-        crearPetalos(6);
-
-
-        await esperar(1400);
-
-
-        iniciarTextosFlores();
-
     }
-);
 
 
-/* =========================================================
-   EXPLOSIÓN DE CORAZONES
-========================================================= */
+    function actualizarProgreso(indice) {
 
-function explosionCorazones() {
+        if (!puntos.length) return;
 
-    const total =
-        window.innerWidth <= 700
-            ? 320
-            : 414;
+        puntos.forEach(
+            (punto, i) => {
 
-    const grupos = 9;
+                punto.classList.remove(
+                    "activo",
+                    "completo"
+                );
 
-    const porGrupo =
-        Math.ceil(
-            total / grupos
+                if (i < indice) {
+                    punto.classList.add(
+                        "completo"
+                    );
+                }
+
+                if (i === indice) {
+                    punto.classList.add(
+                        "activo"
+                    );
+                }
+            }
         );
+    }
 
-    for (
-        let grupo = 0;
-        grupo < grupos;
-        grupo++
-    ) {
 
-        programar(() => {
+    /* =====================================================
+       MÚSICA
+    ===================================================== */
 
-            for (
-                let i = 0;
-                i < porGrupo;
-                i++
+    async function iniciarMusica() {
+
+        if (
+            !musica ||
+            musicaIniciada
+        ) return;
+
+        musicaIniciada = true;
+
+        musica.volume = 0;
+
+        try {
+
+            await musica.play();
+
+            const intervalo =
+                setInterval(() => {
+
+                    if (
+                        musica.volume <
+                        volumenMusica
+                    ) {
+
+                        musica.volume =
+                            Math.min(
+                                volumenMusica,
+                                musica.volume +
+                                0.035
+                            );
+
+                    } else {
+
+                        clearInterval(
+                            intervalo
+                        );
+                    }
+
+                }, 90);
+
+        } catch (error) {
+
+            console.log(
+                "La reproducción de música fue bloqueada:",
+                error
+            );
+        }
+    }
+
+
+    function pausarMusica() {
+
+        if (
+            musica &&
+            !musica.paused
+        ) {
+            musica.pause();
+        }
+    }
+
+
+    function reanudarMusica() {
+
+        if (
+            musica &&
+            musicaIniciada &&
+            musica.paused
+        ) {
+
+            musica.play().catch(() => {});
+        }
+    }
+
+
+    async function desvanecerMusica() {
+
+        if (
+            !musica ||
+            musica.paused
+        ) return;
+
+        const volumenInicial =
+            musica.volume;
+
+        const pasos = 20;
+
+        for (
+            let i = pasos;
+            i >= 0;
+            i--
+        ) {
+
+            musica.volume =
+                volumenInicial *
+                (i / pasos);
+
+            await esperar(60);
+        }
+
+        musica.pause();
+
+        musica.volume =
+            volumenMusica;
+    }
+
+
+    /* =====================================================
+       PARTÍCULAS DEL INICIO
+    ===================================================== */
+
+    function crearParticulasInicio() {
+
+        const contenedor =
+            document.getElementById(
+                "particulasInicio"
+            );
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = "";
+
+        const cantidad =
+            esMovil() ? 8 : 10;
+
+        for (
+            let i = 0;
+            i < cantidad;
+            i++
+        ) {
+
+            const particula =
+                document.createElement(
+                    "span"
+                );
+
+            particula.className =
+                "particula-inicio";
+
+            if (
+                Math.random() >
+                0.55
             ) {
 
-                crearCorazonCaja();
+                particula.classList.add(
+                    "destello"
+                );
 
+                particula.textContent =
+                    "✦";
             }
 
-        }, grupo * 115);
+            particula.style.left =
+                numeroAleatorio(
+                    5,
+                    95
+                ) + "%";
 
-    }
+            particula.style.top =
+                numeroAleatorio(
+                    8,
+                    92
+                ) + "%";
 
-}
+            particula.style.setProperty(
+                "--duracion",
+                numeroAleatorio(
+                    4.5,
+                    8
+                ) + "s"
+            );
 
+            particula.style.setProperty(
+                "--retraso",
+                numeroAleatorio(
+                    0,
+                    4
+                ) + "s"
+            );
 
-function crearCorazonCaja() {
+            particula.style.setProperty(
+                "--tamano",
+                numeroAleatorio(
+                    8,
+                    15
+                ) + "px"
+            );
 
-    const corazon =
-        document.createElement("span");
-
-    corazon.className =
-        "corazon-caja";
-
-    corazon.textContent =
-        Math.random() > 0.15
-            ? "♥"
-            : "✦";
-
-
-    const variante =
-        Math.floor(
-            Math.random() * 4
-        );
-
-    if (variante === 1) {
-
-        corazon.classList.add(
-            "durazno"
-        );
-
-    }
-
-    if (variante === 2) {
-
-        corazon.classList.add(
-            "crema"
-        );
-
-    }
-
-    if (variante === 3) {
-
-        corazon.classList.add(
-            "claro"
-        );
-
+            contenedor.appendChild(
+                particula
+            );
+        }
     }
 
 
-    const x =
-        (
-            Math.random() - 0.5
-        ) *
-        (
-            window.innerWidth <= 700
-                ? 330
-                : 520
+    /* =====================================================
+       PRESENTACIÓN INICIAL
+    ===================================================== */
+
+    async function iniciarPresentacion() {
+
+        crearParticulasInicio();
+
+        await esperar(500);
+
+        destelloPresentacion
+            ?.classList.add(
+                "visible"
+            );
+
+        await esperar(650);
+
+        etiquetaInicio
+            ?.classList.add(
+                "visible"
+            );
+
+        await esperar(650);
+
+        await escribirTexto(
+            tituloInicio,
+            "Marí, tienes una pequeña sorpresa.",
+            esMovil() ? 45 : 52
         );
 
-    const y =
-        -(
-            120 +
-            Math.random() *
-            (
-                window.innerWidth <= 700
-                    ? 430
-                    : 520
-            )
+        await esperar(350);
+
+        await escribirTexto(
+            descripcionInicio,
+            "Pero primero tienes que descubrirla…",
+            esMovil() ? 32 : 38
         );
 
-    const escala =
-        0.45 +
-        Math.random() * 1.6;
+        await esperar(400);
 
-    const rotacion =
-        (
-            Math.random() - 0.5
-        ) *
-        240;
-
-    const tiempo =
-        1.5 +
-        Math.random() * 1.7;
-
-
-    corazon.style.fontSize =
-        `${8 + Math.random() * 18}px`;
-
-    corazon.style.setProperty(
-        "--x",
-        `${x}px`
-    );
-
-    corazon.style.setProperty(
-        "--y",
-        `${y}px`
-    );
-
-    corazon.style.setProperty(
-        "--escala",
-        escala
-    );
-
-    corazon.style.setProperty(
-        "--rotacion",
-        `${rotacion}deg`
-    );
-
-    corazon.style.setProperty(
-        "--tiempo",
-        `${tiempo}s`
-    );
-
-
-    contenedorCorazonesCaja.appendChild(
-        corazon
-    );
-
-
-    programar(() => {
-
-        corazon.remove();
-
-    }, tiempo * 1000 + 200);
-
-}
-
-
-/* =========================================================
-   TEXTOS FLORES
-========================================================= */
-
-async function iniciarTextosFlores() {
-
-    fraseFlor1.textContent = "";
-    fraseFlor2.textContent = "";
-    fraseFlor3.textContent = "";
-
-    separadorFlores.classList.remove(
-        "visible"
-    );
-
-    btnARecuerdos.classList.remove(
-        "visible"
-    );
-
-
-    await escribirTexto(
-        fraseFlor1,
-        "No necesitaba ser una fecha especial para prepararte algo.",
-        35
-    );
-
-
-    await esperar(400);
-
-
-    separadorFlores.classList.add(
-        "visible"
-    );
-
-
-    await esperar(450);
-
-
-    await escribirTexto(
-        fraseFlor2,
-        "Dicen que las flores amarillas tienen un significado especial…",
-        31
-    );
-
-
-    await esperar(300);
-
-
-    await escribirTexto(
-        fraseFlor3,
-        "Pero yo solo quería encontrar una excusa para regalarte unas.",
-        31
-    );
-
-
-    await esperar(500);
-
-
-    btnARecuerdos.classList.add(
-        "visible"
-    );
-
-}
-
-
-/* =========================================================
-   IR A RECUERDOS
-========================================================= */
-
-btnARecuerdos.addEventListener(
-    "click",
-    async () => {
-
-        actualizarProgreso(2);
-
-        mostrarEscena(
-            escenaPuente
-        );
-
-
-        await esperar(2700);
-
-
-        mostrarEscena(
-            escenaRecuerdos
-        );
-
+        separadorInicio
+            ?.classList.add(
+                "visible"
+            );
 
         await esperar(550);
 
+        btnAbrir
+            ?.classList.add(
+                "visible"
+            );
 
-        recuerdoActual = 0;
+        await esperar(500);
+
+        pistaInicio
+            ?.classList.add(
+                "visible"
+            );
+    }
+
+
+    /* =====================================================
+       ABRIR SORPRESA
+    ===================================================== */
+
+    if (btnAbrir) {
+
+        btnAbrir.addEventListener(
+            "click",
+            async () => {
+
+                if (
+                    abriendoSorpresa
+                ) return;
+
+                abriendoSorpresa =
+                    true;
+
+                btnAbrir.disabled =
+                    true;
+
+                iniciarMusica();
+
+                pistaInicio
+                    ?.classList.remove(
+                        "visible"
+                    );
+
+                btnAbrir
+                    ?.classList.remove(
+                        "visible"
+                    );
+
+                await esperar(250);
+
+                momentoPresentacion
+                    ?.classList.add(
+                        "saliendo"
+                    );
+
+                await esperar(650);
+
+                momentoPresentacion
+                    ?.classList.remove(
+                        "activo"
+                    );
+
+                momentoCaja
+                    ?.classList.add(
+                        "activo"
+                    );
+
+                await esperar(650);
+
+                await escribirTexto(
+                    textoDescubrimiento,
+                    "A ver qué hay aquí…",
+                    esMovil() ? 35 : 42
+                );
+
+                await esperar(700);
+
+                abrirCaja();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       APERTURA DE CAJA
+    ===================================================== */
+
+    async function abrirCaja() {
+
+        zonaCaja
+            ?.classList.add(
+                "abierta"
+            );
+
+        crearExplosionCorazones();
+
+        crearChispasCaja();
+
+        setTimeout(
+            crearChispasCaja,
+            520
+        );
+
+        await esperar(
+            esMovil()
+                ? 2300
+                : 2100
+        );
+
+        escenas.inicio
+            ?.classList.remove(
+                "activa"
+            );
+
+        await esperar(400);
+
+        escenas.flores
+            ?.classList.add(
+                "activa"
+            );
+
+        mostrarProgreso();
+
+        actualizarProgreso(0);
+
+        await esperar(250);
+
+        iniciarFlores();
+    }
+
+
+    /* =====================================================
+       EXPLOSIÓN DE CORAZONES
+    ===================================================== */
+
+    function crearExplosionCorazones() {
+
+        if (
+            !capaEfectos ||
+            !zonaCaja
+        ) return;
+
+        const rect =
+            zonaCaja.getBoundingClientRect();
+
+        const origenX =
+            rect.left +
+            rect.width / 2;
+
+        const origenY =
+            rect.top +
+            rect.height * 0.72;
+
+        crearOleadaCorazones(
+            origenX,
+            origenY,
+            esMovil()
+                ? 55
+                : 72
+        );
+
+        setTimeout(() => {
+
+            crearOleadaCorazones(
+                origenX,
+                origenY,
+                esMovil()
+                    ? 55
+                    : 73
+            );
+
+        }, 520);
+    }
+
+
+    function crearOleadaCorazones(
+        origenX,
+        origenY,
+        cantidad
+    ) {
+
+        const simbolos = [
+            "♥",
+            "♡",
+            "✦"
+        ];
+
+        for (
+            let i = 0;
+            i < cantidad;
+            i++
+        ) {
+
+            const corazon =
+                document.createElement(
+                    "span"
+                );
+
+            corazon.className =
+                "corazon-caja";
+
+            corazon.textContent =
+                simbolos[
+                    Math.floor(
+                        Math.random() *
+                        simbolos.length
+                    )
+                ];
+
+            const destinoX =
+                numeroAleatorio(
+                    -window.innerWidth *
+                    0.58,
+                    window.innerWidth *
+                    0.58
+                );
+
+            const destinoY =
+                numeroAleatorio(
+                    -window.innerHeight *
+                    0.80,
+                    window.innerHeight *
+                    0.20
+                );
+
+            corazon.style.position =
+                "fixed";
+
+            corazon.style.left =
+                origenX + "px";
+
+            corazon.style.top =
+                origenY + "px";
+
+            corazon.style.bottom =
+                "auto";
+
+            corazon.style.fontSize =
+                numeroAleatorio(
+                    esMovil()
+                        ? 13
+                        : 14,
+                    esMovil()
+                        ? 27
+                        : 31
+                ) + "px";
+
+            corazon.style.setProperty(
+                "--x",
+                destinoX + "px"
+            );
+
+            corazon.style.setProperty(
+                "--y",
+                destinoY + "px"
+            );
+
+            corazon.style.setProperty(
+                "--escala",
+                numeroAleatorio(
+                    0.65,
+                    1.45
+                )
+            );
+
+            corazon.style.setProperty(
+                "--rotacion",
+                numeroAleatorio(
+                    -180,
+                    180
+                ) + "deg"
+            );
+
+            corazon.style.setProperty(
+                "--tiempo",
+                numeroAleatorio(
+                    1.7,
+                    3
+                ) + "s"
+            );
+
+            const variante =
+                Math.random();
+
+            if (
+                variante < 0.25
+            ) {
+
+                corazon.classList.add(
+                    "durazno"
+                );
+
+            } else if (
+                variante < 0.5
+            ) {
+
+                corazon.classList.add(
+                    "crema"
+                );
+
+            } else if (
+                variante < 0.75
+            ) {
+
+                corazon.classList.add(
+                    "claro"
+                );
+            }
+
+            capaEfectos.appendChild(
+                corazon
+            );
+
+            setTimeout(() => {
+
+                corazon.remove();
+
+            }, 3300);
+        }
+    }
+
+
+    /* =====================================================
+       CHISPAS DE LA CAJA
+    ===================================================== */
+
+    function crearChispasCaja() {
+
+        if (!zonaCaja) return;
+
+        const rect =
+            zonaCaja.getBoundingClientRect();
+
+        crearChispas(
+            rect.left +
+            rect.width / 2,
+
+            rect.top +
+            rect.height * 0.70,
+
+            esMovil()
+                ? 20
+                : 26
+        );
+    }
+
+
+    function crearChispas(
+        x,
+        y,
+        cantidad = 18
+    ) {
+
+        if (!capaEfectos) return;
+
+        for (
+            let i = 0;
+            i < cantidad;
+            i++
+        ) {
+
+            const chispa =
+                document.createElement(
+                    "span"
+                );
+
+            chispa.className =
+                "chispa";
+
+            chispa.textContent =
+                Math.random() >
+                0.4
+                    ? "✦"
+                    : "·";
+
+            chispa.style.left =
+                x + "px";
+
+            chispa.style.top =
+                y + "px";
+
+            chispa.style.fontSize =
+                numeroAleatorio(
+                    7,
+                    14
+                ) + "px";
+
+            chispa.style.setProperty(
+                "--x",
+                numeroAleatorio(
+                    -130,
+                    130
+                ) + "px"
+            );
+
+            chispa.style.setProperty(
+                "--y",
+                numeroAleatorio(
+                    -130,
+                    100
+                ) + "px"
+            );
+
+            capaEfectos.appendChild(
+                chispa
+            );
+
+            setTimeout(
+                () => chispa.remove(),
+                1500
+            );
+        }
+    }
+
+
+    /* =====================================================
+       ESCENA DE FLORES
+    ===================================================== */
+
+    async function iniciarFlores() {
+
+        /*
+           Al aparecer el ramo se generan
+           pétalos en toda la pantalla.
+
+           El movimiento permanente del ramo
+           lo realiza el CSS.
+        */
+
+        btnARecuerdos
+            ?.classList.remove(
+                "visible"
+            );
+
+        crearPetalos(
+            esMovil()
+                ? 22
+                : 28
+        );
+
+        await esperar(650);
+
+        const ramo =
+            document.querySelector(
+                ".ramo-principal"
+            );
+
+        if (ramo) {
+
+            const rect =
+                ramo.getBoundingClientRect();
+
+            crearChispas(
+                rect.left +
+                rect.width / 2,
+
+                rect.top +
+                rect.height / 2,
+
+                esMovil()
+                    ? 15
+                    : 18
+            );
+        }
+
+        await esperar(350);
+
+        try {
+
+            await escribirTexto(
+                fraseFlor1,
+
+                "No necesitaba ser una fecha especial para prepararte algo.",
+
+                esMovil()
+                    ? 22
+                    : 25
+            );
+
+            await esperar(200);
+
+            separadorFlores
+                ?.classList.add(
+                    "visible"
+                );
+
+            await esperar(250);
+
+            await escribirTexto(
+                fraseFlor2,
+
+                "Dicen que las flores amarillas tienen un significado especial…",
+
+                esMovil()
+                    ? 20
+                    : 23
+            );
+
+            await esperar(180);
+
+            await escribirTexto(
+                fraseFlor3,
+
+                "Pero yo solo quería encontrar una excusa para regalarte unas.",
+
+                esMovil()
+                    ? 20
+                    : 23
+            );
+
+            await esperar(300);
+
+        } catch (error) {
+
+            console.error(
+                "Error en la escena de flores:",
+                error
+            );
+
+        } finally {
+
+            /*
+               El botón siempre aparece,
+               incluso si hubiese algún problema
+               con una animación.
+            */
+
+            btnARecuerdos
+                ?.classList.add(
+                    "visible"
+                );
+        }
+    }
+
+
+    /* =====================================================
+       PÉTALOS
+    ===================================================== */
+
+    function crearPetalos(
+        cantidad = 25
+    ) {
+
+        if (!capaEfectos) return;
+
+        for (
+            let i = 0;
+            i < cantidad;
+            i++
+        ) {
+
+            const petalo =
+                document.createElement(
+                    "span"
+                );
+
+            petalo.className =
+                "petalo-efecto";
+
+            petalo.style.left =
+                numeroAleatorio(
+                    -5,
+                    100
+                ) + "vw";
+
+            petalo.style.width =
+                numeroAleatorio(
+                    8,
+                    15
+                ) + "px";
+
+            petalo.style.height =
+                numeroAleatorio(
+                    12,
+                    21
+                ) + "px";
+
+            petalo.style.setProperty(
+                "--duracion",
+                numeroAleatorio(
+                    4,
+                    7
+                ) + "s"
+            );
+
+            petalo.style.setProperty(
+                "--desplazamiento",
+                numeroAleatorio(
+                    -120,
+                    120
+                ) + "px"
+            );
+
+            petalo.style.animationDelay =
+                numeroAleatorio(
+                    0,
+                    1.2
+                ) + "s";
+
+            capaEfectos.appendChild(
+                petalo
+            );
+
+            setTimeout(() => {
+
+                petalo.remove();
+
+            }, 8500);
+        }
+    }
+
+
+    /* =====================================================
+       FLORES → PUENTE
+    ===================================================== */
+
+    if (btnARecuerdos) {
+
+        btnARecuerdos.addEventListener(
+            "click",
+            async () => {
+
+                btnARecuerdos.disabled =
+                    true;
+
+                await cambiarEscena(
+                    escenas.flores,
+                    escenas.puente,
+                    1
+                );
+
+                await esperar(3300);
+
+                await cambiarEscena(
+                    escenas.puente,
+                    escenas.recuerdos,
+                    2
+                );
+
+                iniciarRecuerdos();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       RECUERDOS
+    ===================================================== */
+
+    async function iniciarRecuerdos() {
+
+        recuerdosActivos = true;
+
+        recuerdosPausados = false;
+
+        indiceRecuerdo = 0;
+
+        fraseRecuerdoTerminada =
+            false;
+
+        recuerdos.forEach(
+            recuerdo => {
+
+                recuerdo.classList.remove(
+                    "activo",
+                    "visible",
+                    "frase-visible"
+                );
+            }
+        );
 
         mostrarRecuerdo(
-            recuerdoActual
+            indiceRecuerdo
+        );
+    }
+
+
+    async function mostrarRecuerdo(
+        indice
+    ) {
+
+        if (
+            !recuerdosActivos ||
+            !recuerdos[indice]
+        ) return;
+
+        clearTimeout(
+            temporizadorRecuerdo
         );
 
-    }
-);
+        fraseRecuerdoTerminada =
+            false;
 
+        ayudaPausa
+            ?.classList.remove(
+                "visible"
+            );
 
-/* =========================================================
-   RECUERDOS
-========================================================= */
+        recuerdos.forEach(
+            recuerdo => {
 
-async function mostrarRecuerdo(indice) {
+                recuerdo.classList.remove(
+                    "activo",
+                    "visible",
+                    "frase-visible"
+                );
+            }
+        );
 
-    limpiarTemporizadorRecuerdo();
+        const recuerdo =
+            recuerdos[indice];
 
-    fraseRecuerdoTerminada = false;
+        recuerdo.classList.add(
+            "activo"
+        );
 
-    tiempoRestanteRecuerdo = 5000;
+        await esperar(80);
 
+        recuerdo.classList.add(
+            "visible"
+        );
 
-    recuerdos.forEach(recuerdo => {
+        await esperar(700);
 
-        recuerdo.classList.remove(
-            "activo",
-            "visible",
+        recuerdo.classList.add(
             "frase-visible"
         );
+
+        await esperar(250);
 
         const texto =
             recuerdo.querySelector(
@@ -1016,871 +1297,773 @@ async function mostrarRecuerdo(indice) {
 
         if (texto) {
 
-            texto.textContent = "";
-
-            texto.classList.remove(
-                "escribiendo"
+            await escribirTexto(
+                texto,
+                texto.dataset.text || "",
+                esMovil()
+                    ? 27
+                    : 31
             );
-
         }
 
-    });
+        fraseRecuerdoTerminada =
+            true;
 
-
-    const actual =
-        recuerdos[indice];
-
-    if (!actual) return;
-
-
-    actual.classList.add(
-        "activo"
-    );
-
-
-    await esperar(100);
-
-
-    if (
-        !escenaRecuerdos.classList.contains(
-            "activa"
-        )
-    ) {
-        return;
-    }
-
-
-    actual.classList.add(
-        "visible"
-    );
-
-
-    /*
-       Mostramos la ayuda una sola vez.
-    */
-
-    if (!ayudaPausaMostrada) {
-
-        ayudaPausaMostrada = true;
-
-        programar(() => {
-
-            ayudaPausa.classList.add(
+        ayudaPausa
+            ?.classList.add(
                 "visible"
             );
 
-        }, 1700);
+        /*
+           El conteo de 5 segundos comienza
+           solamente después de terminar
+           de escribir la frase.
+        */
 
-        programar(() => {
+        if (!recuerdosPausados) {
 
-            ayudaPausa.classList.remove(
-                "visible"
-            );
-
-        }, 6000);
-
+            iniciarTemporizadorRecuerdo();
+        }
     }
 
 
-    await esperar(1150);
-
-
-    if (
-        !escenaRecuerdos.classList.contains(
-            "activa"
-        )
-    ) {
-        return;
-    }
-
-
-    actual.classList.add(
-        "frase-visible"
-    );
-
-
-    const texto =
-        actual.querySelector(
-            ".texto-recuerdo"
-        );
-
-    const contenido =
-        texto.dataset.text;
-
-
-    await escribirTexto(
-        texto,
-        contenido,
-        38
-    );
-
-
-    fraseRecuerdoTerminada = true;
-
-
-    /*
-       Los 5 segundos comienzan
-       únicamente cuando terminó
-       de escribirse la frase.
-    */
-
-    if (!recuerdosPausados) {
-
-        iniciarTiempoRecuerdo(
-            5000
-        );
-
-    }
-
-}
-
-
-function iniciarTiempoRecuerdo(tiempo) {
-
-    limpiarTemporizadorRecuerdo();
-
-    tiempoRestanteRecuerdo =
-        tiempo;
-
-    inicioTemporizadorRecuerdo =
-        Date.now();
-
-
-    temporizadorRecuerdo =
-        setTimeout(() => {
-
-            avanzarRecuerdo();
-
-        }, tiempo);
-
-}
-
-
-function limpiarTemporizadorRecuerdo() {
-
-    if (temporizadorRecuerdo) {
+    function iniciarTemporizadorRecuerdo() {
 
         clearTimeout(
             temporizadorRecuerdo
         );
 
-        temporizadorRecuerdo = null;
-
-    }
-
-}
-
-
-async function avanzarRecuerdo() {
-
-    limpiarTemporizadorRecuerdo();
-
-
-    const actual =
-        recuerdos[recuerdoActual];
-
-
-    if (actual) {
-
-        actual.classList.remove(
-            "visible",
-            "frase-visible"
-        );
-
+        temporizadorRecuerdo =
+            setTimeout(
+                siguienteRecuerdo,
+                5000
+            );
     }
 
 
-    await esperar(700);
-
-
-    recuerdoActual++;
-
-
-    if (
-        recuerdoActual <
-        recuerdos.length
-    ) {
-
-        mostrarRecuerdo(
-            recuerdoActual
-        );
-
-        return;
-
-    }
-
-
-    await esperar(1100);
-
-
-    actualizarProgreso(3);
-
-    mostrarEscena(
-        escenaJuego
-    );
-
-    prepararJuego();
-
-}
-
-
-/* =========================================================
-   PAUSAR RECUERDOS
-========================================================= */
-
-escenaRecuerdos.addEventListener(
-    "click",
-    evento => {
-
-        /*
-           Evitamos pausar por accidente
-           si algún día agregamos botones.
-        */
+    async function siguienteRecuerdo() {
 
         if (
-            evento.target.closest(
-                "button"
-            )
-        ) {
-            return;
-        }
+            recuerdosPausados ||
+            !recuerdosActivos
+        ) return;
 
+        const actual =
+            recuerdos[
+                indiceRecuerdo
+            ];
 
-        if (recuerdosPausados) {
-
-            reanudarRecuerdos();
-
-        } else {
-
-            pausarRecuerdos();
-
-        }
-
-    }
-);
-
-
-function pausarRecuerdos() {
-
-    recuerdosPausados = true;
-
-
-    if (temporizadorRecuerdo) {
-
-        const transcurrido =
-            Date.now() -
-            inicioTemporizadorRecuerdo;
-
-        tiempoRestanteRecuerdo =
-            Math.max(
-                0,
-                tiempoRestanteRecuerdo -
-                transcurrido
-            );
-
-        limpiarTemporizadorRecuerdo();
-
-    }
-
-
-    if (!musica.paused) {
-
-        musica.pause();
-
-    }
-
-
-    mostrarIndicadorPausa(
-        "❚❚"
-    );
-
-}
-
-
-async function reanudarRecuerdos() {
-
-    recuerdosPausados = false;
-
-
-    try {
-
-        await musica.play();
-
-    } catch (error) {
-
-        console.log(error);
-
-    }
-
-
-    mostrarIndicadorPausa(
-        "▶"
-    );
-
-
-    /*
-       Si la frase ya terminó,
-       continuamos el tiempo restante.
-
-       Esto también corrige el caso
-       de pausar mientras se escribía.
-    */
-
-    if (fraseRecuerdoTerminada) {
-
-        iniciarTiempoRecuerdo(
-            tiempoRestanteRecuerdo > 0
-                ? tiempoRestanteRecuerdo
-                : 5000
-        );
-
-    }
-
-}
-
-
-function mostrarIndicadorPausa(icono) {
-
-    indicadorPausa.textContent =
-        icono;
-
-    indicadorPausa.classList.add(
-        "visible"
-    );
-
-
-    programar(() => {
-
-        indicadorPausa.classList.remove(
+        actual?.classList.remove(
             "visible"
         );
 
-    }, 650);
-
-}
-
-
-/* =========================================================
-   JUEGO
-========================================================= */
-
-function prepararJuego() {
-
-    tableroTulipanes.innerHTML = "";
-
-    tableroTulipanes.classList.remove(
-        "resuelto"
-    );
-
-    mensajeJuego.textContent = "";
-
-    btnDespuesJuego.classList.add(
-        "oculto"
-    );
-
-    juegoResuelto = false;
-
-
-    const total = 6;
-
-    const diferente =
-        Math.floor(
-            Math.random() * total
-        );
-
-
-    for (
-        let i = 0;
-        i < total;
-        i++
-    ) {
-
-        const boton =
-            document.createElement(
-                "button"
-            );
-
-        boton.type =
-            "button";
-
-        boton.className =
-            "tulipan-juego";
-
-        boton.setAttribute(
-            "aria-label",
-            "Tulipán"
-        );
-
-
-        if (i === diferente) {
-
-            boton.classList.add(
-                "diferente"
-            );
-
-        }
-
-
-        boton.innerHTML = `
-            <span class="flor-tulipan">
-                <span class="petalo petalo-izq"></span>
-                <span class="petalo petalo-centro"></span>
-                <span class="petalo petalo-der"></span>
-            </span>
-
-            <span class="tallo"></span>
-
-            <span class="hoja hoja-izq"></span>
-            <span class="hoja hoja-der"></span>
-        `;
-
-
-        boton.addEventListener(
-            "click",
-            () => {
-
-                comprobarTulipan(
-                    boton,
-                    i === diferente
-                );
-
-            }
-        );
-
-
-        tableroTulipanes.appendChild(
-            boton
-        );
-
-    }
-
-}
-
-
-function comprobarTulipan(
-    boton,
-    correcto
-) {
-
-    if (juegoResuelto) return;
-
-
-    if (!correcto) {
-
-        boton.classList.remove(
-            "error"
-        );
-
-        void boton.offsetWidth;
-
-        boton.classList.add(
-            "error"
-        );
-
-        mensajeJuego.textContent =
-            "Mmm… ese parece igual 👀";
-
-        return;
-
-    }
-
-
-    juegoResuelto = true;
-
-
-    boton.classList.add(
-        "correcto"
-    );
-
-    tableroTulipanes.classList.add(
-        "resuelto"
-    );
-
-
-    mensajeJuego.textContent =
-        "Sabía que lo encontrarías 😌";
-
-
-    crearPetalos(14);
-
-
-    programar(() => {
-
-        btnDespuesJuego.classList.remove(
-            "oculto"
-        );
-
-    }, 800);
-
-}
-
-
-/* =========================================================
-   DESPUÉS DEL JUEGO
-========================================================= */
-
-btnDespuesJuego.addEventListener(
-    "click",
-    () => {
-
-        actualizarProgreso(4);
-
-        mostrarEscena(
-            escenaMensaje
-        );
-
-    }
-);
-
-
-/* =========================================================
-   FOTO FINAL
-========================================================= */
-
-btnAFotoFinal.addEventListener(
-    "click",
-    async () => {
-
-        actualizarProgreso(5);
-
-        antesTerminar.classList.remove(
-            "ocultar"
-        );
-
-        fotoDestacada.classList.remove(
-            "visible"
-        );
-
-        fraseFotoFinal.textContent = "";
-
-        btnAlFinal.classList.remove(
-            "visible"
-        );
-
-
-        mostrarEscena(
-            escenaFotoFinal
-        );
-
-
-        await esperar(1700);
-
-
-        antesTerminar.classList.add(
-            "ocultar"
-        );
-
-
-        await esperar(500);
-
-
-        fotoDestacada.classList.add(
-            "visible"
-        );
-
-
-        await esperar(1000);
-
-
-        await escribirTexto(
-            fraseFotoFinal,
-            "Creo que algunos recuerdos no necesitan demasiadas palabras para ser especiales.",
-            36
-        );
-
-
-        await esperar(400);
-
-
-        btnAlFinal.classList.add(
-            "visible"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-btnAlFinal.addEventListener(
-    "click",
-    () => {
-
-        actualizarProgreso(5);
-
-        mostrarEscena(
-            escenaFinal
-        );
-
-
-        crearPetalos(18);
-
-
-        programar(() => {
-
-            preguntaFinal.classList.add(
+        ayudaPausa
+            ?.classList.remove(
                 "visible"
             );
 
-        }, 3300);
+        await esperar(650);
 
-    }
-);
-
-
-/* =========================================================
-   RESPUESTAS FINALES
-========================================================= */
-
-btnSi.addEventListener(
-    "click",
-    () => {
-
-        responderFinal(
-            "Entonces valió la pena hacer todo esto 😌"
+        actual?.classList.remove(
+            "activo",
+            "frase-visible"
         );
 
+        indiceRecuerdo++;
+
+        if (
+            indiceRecuerdo <
+            recuerdos.length
+        ) {
+
+            mostrarRecuerdo(
+                indiceRecuerdo
+            );
+
+        } else {
+
+            recuerdosActivos =
+                false;
+
+            await esperar(350);
+
+            await cambiarEscena(
+                escenas.recuerdos,
+                escenas.juego,
+                3
+            );
+
+            prepararJuego();
+        }
     }
-);
 
 
-btnPoquito.addEventListener(
-    "click",
-    () => {
+    /* =====================================================
+       PAUSAR RECUERDOS
+    ===================================================== */
 
-        responderFinal(
-            "Bueno… tendré que mejorar para la próxima 😂"
-        );
+    if (escenas.recuerdos) {
 
+        escenas.recuerdos
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        !recuerdosActivos
+                    ) return;
+
+                    recuerdosPausados =
+                        !recuerdosPausados;
+
+                    if (
+                        recuerdosPausados
+                    ) {
+
+                        clearTimeout(
+                            temporizadorRecuerdo
+                        );
+
+                        pausarMusica();
+
+                        mostrarIndicador(
+                            "❚❚"
+                        );
+
+                    } else {
+
+                        reanudarMusica();
+
+                        mostrarIndicador(
+                            "▶"
+                        );
+
+                        if (
+                            fraseRecuerdoTerminada
+                        ) {
+
+                            iniciarTemporizadorRecuerdo();
+                        }
+                    }
+                }
+            );
     }
-);
 
 
-function responderFinal(texto) {
-
-    if (
-        btnSi.disabled ||
-        btnPoquito.disabled
+    function mostrarIndicador(
+        simbolo
     ) {
-        return;
-    }
 
+        if (!indicadorPausa) return;
 
-    btnSi.disabled = true;
-    btnPoquito.disabled = true;
+        indicadorPausa.textContent =
+            simbolo;
 
-
-    respuestaFinal.textContent =
-        texto;
-
-    respuestaFinal.classList.add(
-        "visible"
-    );
-
-
-    /*
-       Dejamos que la canción continúe
-       unos segundos después de responder.
-    */
-
-    programar(() => {
-
-        bajarVolumen(
-            0,
-            1200,
-            () => {
-
-                musica.pause();
-
-            }
-        );
-
-    }, 5000);
-
-
-    programar(() => {
-
-        btnRepetir.classList.add(
+        indicadorPausa.classList.add(
             "visible"
         );
 
-    }, 1600);
+        setTimeout(() => {
 
-}
+            indicadorPausa
+                .classList.remove(
+                    "visible"
+                );
 
-
-/* =========================================================
-   REPETIR
-========================================================= */
-
-btnRepetir.addEventListener(
-    "click",
-    () => {
-
-        window.location.reload();
-
+        }, 700);
     }
-);
 
 
-/* =========================================================
-   PÉTALOS
-========================================================= */
+    /* =====================================================
+       MINI JUEGO
+    ===================================================== */
 
-function crearPetalos(cantidad = 10) {
+    function prepararJuego() {
 
-    for (
-        let i = 0;
-        i < cantidad;
-        i++
-    ) {
+        if (!tableroTulipanes) return;
 
-        const petalo =
-            document.createElement(
-                "span"
+        tableroTulipanes.innerHTML =
+            "";
+
+        tableroTulipanes.classList.remove(
+            "resuelto"
+        );
+
+        mensajeJuego.textContent =
+            "";
+
+        btnDespuesJuego
+            ?.classList.add(
+                "oculto"
             );
 
-        petalo.className =
-            "petalo-efecto";
+        juegoResuelto = false;
 
+        const cantidad = 9;
 
-        petalo.style.left =
-            `${Math.random() * 100}%`;
-
-
-        const duracion =
-            3.5 +
-            Math.random() * 2.8;
-
-
-        const desplazamiento =
-            (
-                Math.random() - 0.5
-            ) *
-            180;
-
-
-        petalo.style.setProperty(
-            "--duracion",
-            `${duracion}s`
-        );
-
-        petalo.style.setProperty(
-            "--desplazamiento",
-            `${desplazamiento}px`
-        );
-
-
-        petalo.style.animationDelay =
-            `${Math.random() * 0.8}s`;
-
-
-        petalo.style.transform =
-            `scale(${0.65 + Math.random() * 0.7})`;
-
-
-        capaEfectos.appendChild(
-            petalo
-        );
-
-
-        programar(() => {
-
-            petalo.remove();
-
-        }, (duracion + 1) * 1000);
-
-    }
-
-}
-
-
-/* =========================================================
-   CHISPAS
-========================================================= */
-
-function crearChispas(
-    x,
-    y,
-    cantidad = 12
-) {
-
-    for (
-        let i = 0;
-        i < cantidad;
-        i++
-    ) {
-
-        const chispa =
-            document.createElement(
-                "span"
+        const diferente =
+            Math.floor(
+                Math.random() *
+                cantidad
             );
 
-        chispa.className =
-            "chispa";
+        for (
+            let i = 0;
+            i < cantidad;
+            i++
+        ) {
 
-        chispa.textContent =
-            Math.random() > 0.35
-                ? "✦"
-                : "•";
+            const boton =
+                document.createElement(
+                    "button"
+                );
 
+            boton.type = "button";
 
-        chispa.style.left =
-            `${x}px`;
+            boton.className =
+                "tulipan-juego";
 
-        chispa.style.top =
-            `${y}px`;
+            boton.setAttribute(
+                "aria-label",
+                "Tulipán"
+            );
 
+            if (
+                i === diferente
+            ) {
 
-        const angulo =
-            Math.random() *
-            Math.PI *
-            2;
+                boton.classList.add(
+                    "diferente"
+                );
+            }
 
+            boton.innerHTML = `
+                <span class="flor-tulipan">
+                    <span class="petalo petalo-izq"></span>
+                    <span class="petalo petalo-centro"></span>
+                    <span class="petalo petalo-der"></span>
+                </span>
 
-        const distancia =
-            70 +
-            Math.random() *
-            180;
+                <span class="tallo"></span>
 
+                <span class="hoja hoja-izq"></span>
+                <span class="hoja hoja-der"></span>
+            `;
 
-        chispa.style.setProperty(
-            "--x",
-            `${Math.cos(angulo) * distancia}px`
-        );
+            boton.addEventListener(
+                "click",
+                () => {
 
-        chispa.style.setProperty(
-            "--y",
-            `${Math.sin(angulo) * distancia}px`
-        );
+                    comprobarTulipan(
+                        boton
+                    );
+                }
+            );
 
-
-        chispa.style.fontSize =
-            `${8 + Math.random() * 12}px`;
-
-
-        capaEfectos.appendChild(
-            chispa
-        );
-
-
-        programar(() => {
-
-            chispa.remove();
-
-        }, 1400);
-
+            tableroTulipanes
+                .appendChild(
+                    boton
+                );
+        }
     }
 
-}
+
+    function comprobarTulipan(
+        boton
+    ) {
+
+        if (juegoResuelto) return;
+
+        if (
+            boton.classList.contains(
+                "diferente"
+            )
+        ) {
+
+            juegoResuelto = true;
+
+            boton.classList.add(
+                "correcto"
+            );
+
+            tableroTulipanes
+                ?.classList.add(
+                    "resuelto"
+                );
+
+            mensajeJuego.textContent =
+                "Sabía que lo encontrarías 😌";
+
+            crearPetalos(
+                esMovil()
+                    ? 14
+                    : 18
+            );
+
+            const rect =
+                boton.getBoundingClientRect();
+
+            crearChispas(
+                rect.left +
+                rect.width / 2,
+
+                rect.top +
+                rect.height / 2,
+
+                14
+            );
+
+            setTimeout(() => {
+
+                btnDespuesJuego
+                    ?.classList.remove(
+                        "oculto"
+                    );
+
+            }, 650);
+
+        } else {
+
+            mensajeJuego.textContent =
+                "Casi… mira un poquito mejor 👀";
+
+            boton.classList.remove(
+                "error"
+            );
+
+            void boton.offsetWidth;
+
+            boton.classList.add(
+                "error"
+            );
+        }
+    }
 
 
-/* =========================================================
-   INICIALIZACIÓN
-========================================================= */
+    /* =====================================================
+       JUEGO → MENSAJE
+    ===================================================== */
 
-actualizarProgreso(0);
+    if (btnDespuesJuego) {
 
-iniciarPresentacion();
+        btnDespuesJuego
+            .addEventListener(
+                "click",
+                async () => {
+
+                    btnDespuesJuego.disabled =
+                        true;
+
+                    await cambiarEscena(
+                        escenas.juego,
+                        escenas.mensaje,
+                        4
+                    );
+                }
+            );
+    }
+
+
+    /* =====================================================
+       MENSAJE → FOTO DESTACADA
+    ===================================================== */
+
+    if (btnAFotoFinal) {
+
+        btnAFotoFinal.addEventListener(
+            "click",
+            async () => {
+
+                btnAFotoFinal.disabled =
+                    true;
+
+                await cambiarEscena(
+                    escenas.mensaje,
+                    escenas.fotoFinal,
+                    5
+                );
+
+                iniciarFotoFinal();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       FOTO FINAL
+    ===================================================== */
+
+    async function iniciarFotoFinal() {
+
+        antesTerminar
+            ?.classList.remove(
+                "ocultar"
+            );
+
+        fotoDestacada
+            ?.classList.remove(
+                "visible"
+            );
+
+        btnAlFinal
+            ?.classList.remove(
+                "visible"
+            );
+
+        if (btnAlFinal) {
+            btnAlFinal.disabled =
+                false;
+        }
+
+        if (fraseFotoFinal) {
+            fraseFotoFinal.textContent =
+                "";
+        }
+
+        await esperar(2200);
+
+        antesTerminar
+            ?.classList.add(
+                "ocultar"
+            );
+
+        await esperar(650);
+
+        fotoDestacada
+            ?.classList.add(
+                "visible"
+            );
+
+        await esperar(750);
+
+        await escribirTexto(
+            fraseFotoFinal,
+
+            "Creo que algunos recuerdos no necesitan demasiadas palabras para ser especiales.",
+
+            esMovil()
+                ? 28
+                : 35
+        );
+
+        await esperar(450);
+
+        btnAlFinal
+            ?.classList.add(
+                "visible"
+            );
+    }
+
+
+    /* =====================================================
+       FOTO → FINAL
+    ===================================================== */
+
+    if (btnAlFinal) {
+
+        btnAlFinal.addEventListener(
+            "click",
+            async event => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                if (
+                    btnAlFinal.disabled
+                ) return;
+
+                btnAlFinal.disabled =
+                    true;
+
+                await cambiarEscena(
+                    escenas.fotoFinal,
+                    escenas.final,
+                    5
+                );
+
+                iniciarFinal();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       ESCENA FINAL
+    ===================================================== */
+
+    async function iniciarFinal() {
+
+        finalRespondido = false;
+
+        preguntaFinal
+            ?.classList.remove(
+                "visible"
+            );
+
+        respuestaFinal
+            ?.classList.remove(
+                "visible"
+            );
+
+        btnRepetir
+            ?.classList.remove(
+                "visible"
+            );
+
+        if (btnSi) {
+            btnSi.disabled = false;
+        }
+
+        if (btnPoquito) {
+            btnPoquito.disabled =
+                false;
+        }
+
+        /*
+           Pétalos al aparecer los tulipanes.
+
+           El movimiento continuo de
+           recursos/tulipanes.png lo controla
+           el CSS que acabas de reemplazar.
+        */
+
+        crearPetalos(
+            esMovil()
+                ? 20
+                : 26
+        );
+
+        await esperar(350);
+
+        /*
+           Destellos alrededor de los
+           tulipanes del final.
+        */
+
+        const tulipanesFinales =
+            document.querySelector(
+                ".final-tulipanes"
+            );
+
+        if (tulipanesFinales) {
+
+            const rect =
+                tulipanesFinales
+                    .getBoundingClientRect();
+
+            crearChispas(
+                rect.left +
+                rect.width / 2,
+
+                rect.top +
+                rect.height / 2,
+
+                esMovil()
+                    ? 15
+                    : 20
+            );
+        }
+
+        await esperar(1150);
+
+        preguntaFinal
+            ?.classList.add(
+                "visible"
+            );
+    }
+
+
+    /* =====================================================
+       RESPUESTAS FINALES
+    ===================================================== */
+
+    if (btnSi) {
+
+        btnSi.addEventListener(
+            "click",
+            () => {
+
+                responderFinal(
+                    "Entonces valió completamente la pena prepararla ❤️"
+                );
+            }
+        );
+    }
+
+
+    if (btnPoquito) {
+
+        btnPoquito.addEventListener(
+            "click",
+            () => {
+
+                responderFinal(
+                    "Con ese poquito me conformo 😌❤️"
+                );
+            }
+        );
+    }
+
+
+    async function responderFinal(
+        mensaje
+    ) {
+
+        if (finalRespondido) return;
+
+        finalRespondido = true;
+
+        if (btnSi) {
+            btnSi.disabled = true;
+        }
+
+        if (btnPoquito) {
+            btnPoquito.disabled =
+                true;
+        }
+
+        if (respuestaFinal) {
+
+            respuestaFinal.textContent =
+                mensaje;
+
+            respuestaFinal
+                .classList.add(
+                    "visible"
+                );
+        }
+
+        /*
+           Celebración final.
+        */
+
+        crearPetalos(
+            esMovil()
+                ? 22
+                : 30
+        );
+
+        const tulipanes =
+            document.querySelector(
+                ".final-tulipanes"
+            );
+
+        if (tulipanes) {
+
+            const rect =
+                tulipanes
+                    .getBoundingClientRect();
+
+            crearChispas(
+                rect.left +
+                rect.width / 2,
+
+                rect.top +
+                rect.height / 2,
+
+                esMovil()
+                    ? 18
+                    : 24
+            );
+        }
+
+        await esperar(850);
+
+        btnRepetir
+            ?.classList.add(
+                "visible"
+            );
+
+        /*
+           La música continúa 5 segundos
+           después de responder.
+
+           Luego baja durante aproximadamente
+           1.2 segundos y se pausa.
+        */
+
+        setTimeout(() => {
+
+            desvanecerMusica();
+
+        }, 5000);
+    }
+
+
+    /* =====================================================
+       VOLVER A VER LA SORPRESA
+    ===================================================== */
+
+    if (btnRepetir) {
+
+        btnRepetir.addEventListener(
+            "click",
+            () => {
+
+                window.location.reload();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       AJUSTE ALTURA CELULAR
+    ===================================================== */
+
+    function actualizarAlturaPantalla() {
+
+        document.documentElement
+            .style
+            .setProperty(
+                "--alto-pantalla",
+                `${window.innerHeight}px`
+            );
+    }
+
+    actualizarAlturaPantalla();
+
+    window.addEventListener(
+        "resize",
+        actualizarAlturaPantalla
+    );
+
+    window.addEventListener(
+        "orientationchange",
+        () => {
+
+            setTimeout(
+                actualizarAlturaPantalla,
+                250
+            );
+        }
+    );
+
+
+    /* =====================================================
+       MEJORA TOUCH
+    ===================================================== */
+
+    document
+        .querySelectorAll("button")
+        .forEach(boton => {
+
+            boton.addEventListener(
+                "touchstart",
+                () => {},
+                {
+                    passive: true
+                }
+            );
+        });
+
+
+    /* =====================================================
+       INICIO DE LA EXPERIENCIA
+    ===================================================== */
+
+    actualizarProgreso(0);
+
+    iniciarPresentacion();
+
+});

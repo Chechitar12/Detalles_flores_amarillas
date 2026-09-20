@@ -4230,3 +4230,42 @@ and (orientation: landscape) {
 .escena-final.activa .final-tulipanes img { -webkit-animation: movimientoTulipanesIPhone 4s ease-in-out infinite !important; animation: movimientoTulipanesIPhone 4s ease-in-out infinite !important; -webkit-transform-origin:50% 80%; transform-origin:50% 80%; will-change:transform; }
 @-webkit-keyframes movimientoTulipanesIPhone {0%,100%{-webkit-transform:translate3d(0,0,0) rotate(-1deg) scale(1)}25%{-webkit-transform:translate3d(-3px,-6px,0) rotate(.5deg) scale(1.015)}50%{-webkit-transform:translate3d(2px,-13px,0) rotate(1deg) scale(1.025)}75%{-webkit-transform:translate3d(3px,-6px,0) rotate(-.3deg) scale(1.015)}}
 @keyframes movimientoTulipanesIPhone {0%,100%{transform:translate3d(0,0,0) rotate(-1deg) scale(1)}25%{transform:translate3d(-3px,-6px,0) rotate(.5deg) scale(1.015)}50%{transform:translate3d(2px,-13px,0) rotate(1deg) scale(1.025)}75%{transform:translate3d(3px,-6px,0) rotate(-.3deg) scale(1.015)}}
+
+
+/* =========================================================
+   FOTO 5 REUTILIZA EL MISMO DISEÑO DE FOTO 4
+   No se agregan estilos visuales nuevos.
+========================================================= */
+
+
+
+
+/* =========================================================
+   TÍTULOS SUPERIORES - FOTO 4 Y FOTO 5
+   Van dentro del bloque de la foto para quedar SIEMPRE arriba.
+========================================================= */
+
+.titulo-foto-destacada {
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 0 12px;
+
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.16em;
+
+    color: var(--marron);
+    text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+    .titulo-foto-destacada {
+        margin-bottom: 14px;
+        padding: 0 8px;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+    }
+}

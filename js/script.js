@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         juego: document.getElementById("escenaJuego"),
         mensaje: document.getElementById("escenaMensaje"),
         fotoFinal: document.getElementById("escenaFotoFinal"),
+        foto5: document.getElementById("escenaFoto5"),
         final: document.getElementById("escenaFinal")
     };
 
@@ -123,6 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnAlFinal =
         document.getElementById("btnAlFinal");
+
+    const fotoDestacada5 =
+        document.getElementById("fotoDestacada5");
+
+    const fraseFoto5 =
+        document.getElementById("fraseFoto5");
+
+    const btnFoto5AlFinal =
+        document.getElementById("btnFoto5AlFinal");
 
     /* =====================================================
        FINAL
@@ -541,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await escribirTexto(
             tituloInicio,
-            "Marí, tienes una pequeña sorpresa.",
+            "Mari, tienes una pequeña sorpresa.",
             esMovil() ? 45 : 52
         );
 
@@ -1032,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
             await escribirTexto(
                 fraseFlor1,
 
-                "No necesitaba ser una fecha especial para prepararte algo.",
+                "No tenía que ser una fecha especial para querer tener un detalle contigo.",
 
                 esMovil()
                     ? 22
@@ -1063,7 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
             await escribirTexto(
                 fraseFlor3,
 
-                "Pero yo solo quería encontrar una excusa para regalarte unas.",
+                "Pero yo solo necesitaba una pequeña excusa para regalarte unas y sacarte una sonrisa.",
 
                 esMovil()
                     ? 20
@@ -1705,19 +1715,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "visible"
             );
 
-        btnAlFinal
-            ?.classList.remove(
-                "visible"
-            );
-
-        if (btnAlFinal) {
-            btnAlFinal.disabled =
-                false;
-        }
-
         if (fraseFotoFinal) {
-            fraseFotoFinal.textContent =
-                "";
+            fraseFotoFinal.textContent = "";
         }
 
         await esperar(2200);
@@ -1739,16 +1738,79 @@ document.addEventListener("DOMContentLoaded", () => {
         await escribirTexto(
             fraseFotoFinal,
 
-            "Creo que algunos recuerdos no necesitan demasiadas palabras para ser especiales.",
+            "Creo que algunos recuerdos no necesitan demasiadas palabras… basta con saber con quién los compartiste.",
 
             esMovil()
                 ? 28
                 : 35
         );
 
+        /*
+           La Foto 4 se queda visible durante 5 segundos
+           después de terminar la frase y luego pasa
+           automáticamente a la Foto 5.
+        */
+
+        await esperar(5000);
+
+        await cambiarEscena(
+            escenas.fotoFinal,
+            escenas.foto5,
+            5
+        );
+
+        iniciarFoto5();
+    }
+
+
+    async function iniciarFoto5() {
+
+        fotoDestacada5
+            ?.classList.remove(
+                "visible"
+            );
+
+        btnFoto5AlFinal
+            ?.classList.remove(
+                "visible"
+            );
+
+        if (btnFoto5AlFinal) {
+            btnFoto5AlFinal.disabled = false;
+        }
+
+        if (fraseFoto5) {
+            fraseFoto5.textContent = "";
+        }
+
         await esperar(450);
 
-        btnAlFinal
+        fotoDestacada5
+            ?.classList.add(
+                "visible"
+            );
+
+        crearPetalos(
+            esMovil()
+                ? 12
+                : 16
+        );
+
+        await esperar(750);
+
+        await escribirTexto(
+            fraseFoto5,
+
+            "Primero estuvieron en mis manos… y después llegaron a las tuyas. Y aunque solo eran unas flores amarillas, me gustaba pensar que llevaban con ellas un poquito de lo especial que eres para mí. 💛",
+
+            esMovil()
+                ? 26
+                : 33
+        );
+
+        await esperar(450);
+
+        btnFoto5AlFinal
             ?.classList.add(
                 "visible"
             );
@@ -1756,12 +1818,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       FOTO → FINAL
+       FOTO 5 → FINAL
     ===================================================== */
 
-    if (btnAlFinal) {
+    if (btnFoto5AlFinal) {
 
-        btnAlFinal.addEventListener(
+        btnFoto5AlFinal.addEventListener(
             "click",
             async event => {
 
@@ -1770,14 +1832,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.stopPropagation();
 
                 if (
-                    btnAlFinal.disabled
+                    btnFoto5AlFinal.disabled
                 ) return;
 
-                btnAlFinal.disabled =
+                btnFoto5AlFinal.disabled =
                     true;
 
                 await cambiarEscena(
-                    escenas.fotoFinal,
+                    escenas.foto5,
                     escenas.final,
                     5
                 );

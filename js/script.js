@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje: document.getElementById("escenaMensaje"),
         fotoFinal: document.getElementById("escenaFotoFinal"),
         foto5: document.getElementById("escenaFoto5"),
+        dedicatoria: document.getElementById("escenaDedicatoria"),
         final: document.getElementById("escenaFinal")
     };
 
@@ -131,8 +132,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const fraseFoto5 =
         document.getElementById("fraseFoto5");
 
-    const btnFoto5AlFinal =
-        document.getElementById("btnFoto5AlFinal");
+    const btnFoto5AlFinal = document.getElementById("btnFoto5AlFinal");
+    const textoDedicatoria = document.getElementById("textoDedicatoria");
+    const btnDedicatoriaFinal = document.getElementById("btnDedicatoriaFinal");
+    const finalLinea1 = document.getElementById("finalLinea1");
+    const finalLinea2 = document.getElementById("finalLinea2");
+    const finalFirma1 = document.getElementById("finalFirma1");
+    const finalFirma2 = document.getElementById("finalFirma2");
+    const corazonFirma = document.getElementById("corazonFirma");
 
     /* =====================================================
        FINAL
@@ -1332,12 +1339,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!recuerdosPausados) {
 
-            iniciarTemporizadorRecuerdo();
+            iniciarTemporizadorRecuerdo(texto?.dataset.text?.length || 80);
         }
     }
 
 
-    function iniciarTemporizadorRecuerdo() {
+    function iniciarTemporizadorRecuerdo(longitud = 80) {
 
         clearTimeout(
             temporizadorRecuerdo
@@ -1346,7 +1353,7 @@ document.addEventListener("DOMContentLoaded", () => {
         temporizadorRecuerdo =
             setTimeout(
                 siguienteRecuerdo,
-                5000
+                Math.min(12000, Math.max(8000, 8000 + (longitud - 70) * 45))
             );
     }
 
@@ -1530,8 +1537,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             boton.type = "button";
 
-            boton.className =
-                "tulipan-juego";
+            boton.className = "tulipan-juego";
 
             boton.setAttribute(
                 "aria-label",
@@ -1558,6 +1564,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <span class="hoja hoja-izq"></span>
                 <span class="hoja hoja-der"></span>
+                ${i === diferente ? '<span class="hoja hoja-extra"></span>' : ''}
             `;
 
             boton.addEventListener(
@@ -1601,13 +1608,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     "resuelto"
                 );
 
-            mensajeJuego.textContent =
-                "Sabía que lo encontrarías 😌";
+            mensajeJuego.innerHTML = "<strong>¡Ese era! 🌷💛</strong><br>Sabía que lo encontrarías… aunque te hice sufrir un poquito 😂";
 
             crearPetalos(
-                esMovil()
-                    ? 14
-                    : 18
+                esMovil() ? 28 : 36
             );
 
             const rect =
@@ -1630,12 +1634,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         "oculto"
                     );
 
-            }, 650);
+            }, 1500);
 
         } else {
 
-            mensajeJuego.textContent =
-                "Casi… mira un poquito mejor 👀";
+            const mensajesError = [
+                "Ese no era 😏 inténtalo otra vez", "Casi… pero no 👀",
+                "¿Segura? Mira un poquito mejor 😂", "Nop 😌 sigue buscando",
+                "Te dije que no sería tan fácil 🤭", "Por ahí no era 👀🌷",
+                "Ya te vi tocando al azar 😂", "No hagas trampa pues 🤭"
+            ];
+            mensajeJuego.textContent = mensajesError[Math.floor(Math.random() * mensajesError.length)];
 
             boton.classList.remove(
                 "error"
@@ -1745,21 +1754,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 : 35
         );
 
-        /*
-           La Foto 4 se queda visible durante 5 segundos
-           después de terminar la frase y luego pasa
-           automáticamente a la Foto 5.
-        */
+        await esperar(500);
+        btnAlFinal?.classList.add("visible");
+    }
 
-        await esperar(5000);
-
-        await cambiarEscena(
-            escenas.fotoFinal,
-            escenas.foto5,
-            5
-        );
-
-        iniciarFoto5();
+    if (btnAlFinal) {
+        btnAlFinal.addEventListener("click", async () => {
+            btnAlFinal.disabled = true;
+            await cambiarEscena(escenas.fotoFinal, escenas.foto5, 5);
+            iniciarFoto5();
+        });
     }
 
 
@@ -1801,7 +1805,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await escribirTexto(
             fraseFoto5,
 
-            "Primero estuvieron en mis manos… y después llegaron a las tuyas. Y aunque solo eran unas flores amarillas, me gustaba pensar que llevaban con ellas un poquito de lo especial que eres para mí. 💛",
+            "Primero estuvieron en mis manos… y después llegaron a las tuyas. Y aunque solo eran unas flores, me gustaba pensar que llevaban con ellas un poquito de lo especial que eres para mí. 💛",
 
             esMovil()
                 ? 26
@@ -1818,123 +1822,167 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       FOTO 5 → FINAL
+       FOTO 5 → DEDICATORIA
     ===================================================== */
-
     if (btnFoto5AlFinal) {
-
-        btnFoto5AlFinal.addEventListener(
-            "click",
-            async event => {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                if (
-                    btnFoto5AlFinal.disabled
-                ) return;
-
-                btnFoto5AlFinal.disabled =
-                    true;
-
-                await cambiarEscena(
-                    escenas.foto5,
-                    escenas.final,
-                    5
-                );
-
-                iniciarFinal();
-            }
-        );
+        btnFoto5AlFinal.addEventListener("click", async event => {
+            event.preventDefault(); event.stopPropagation();
+            if (btnFoto5AlFinal.disabled) return;
+            btnFoto5AlFinal.disabled = true;
+            await cambiarEscena(escenas.foto5, escenas.dedicatoria, 6);
+            await esperar(1200);
+            iniciarDedicatoria();
+        });
     }
 
+    function iluminarDedicatoria(tipo = "dorado") {
+        const escena = escenas.dedicatoria;
+        if (!escena) return;
+        escena.classList.remove("flash-dorado", "flash-rojo");
+        void escena.offsetWidth;
+        escena.classList.add(tipo === "rojo" ? "flash-rojo" : "flash-dorado");
+        setTimeout(() => escena.classList.remove("flash-dorado", "flash-rojo"), 620);
+    }
+
+    function lanzarCorazonesDedicatoria(tipo = "dorado", cantidad = 18, explosion = false) {
+        if (!capaEfectos) return;
+        const rojo = tipo === "rojo";
+        const simbolos = rojo ? ["♥"] : ["♥", "♥", "★", "✦"];
+        const colores = rojo
+            ? ["#e12636", "#f04450", "#c9182b", "#ff5964"]
+            : ["#f2c94c", "#e0ad2f", "#ffd966", "#c99522", "#fff0a6"];
+
+        const centros = explosion
+            ? Array.from({length: Math.max(3, Math.round(cantidad / 12))}, () => numeroAleatorio(6, 94))
+            : [];
+
+        for (let i = 0; i < cantidad; i++) {
+            const h = document.createElement("span");
+            h.className = "corazon-dedicatoria" + (explosion ? " explosion" : "");
+            h.textContent = simbolos[Math.floor(Math.random() * simbolos.length)];
+            const baseX = explosion ? centros[i % centros.length] + numeroAleatorio(-8, 8) : numeroAleatorio(2, 98);
+            h.style.left = Math.max(1, Math.min(99, baseX)) + "vw";
+            h.style.bottom = numeroAleatorio(-34, 4) + "px";
+            h.style.color = colores[Math.floor(Math.random() * colores.length)];
+            h.style.fontSize = numeroAleatorio(esMovil() ? 18 : 21, esMovil() ? 42 : 50) + "px";
+            h.style.setProperty("--dx", numeroAleatorio(-150, 150) + "px");
+            h.style.setProperty("--dur", numeroAleatorio(2.2, 4.2) + "s");
+            h.style.setProperty("--rot", numeroAleatorio(-55, 55) + "deg");
+            h.style.setProperty("--pop", numeroAleatorio(0.85, 1.35));
+            capaEfectos.appendChild(h);
+            setTimeout(() => h.remove(), 4700);
+        }
+
+        const chispazos = explosion ? Math.max(20, Math.round(cantidad * .42)) : Math.max(8, Math.round(cantidad * .2));
+        for (let j = 0; j < (explosion ? 3 : 1); j++) {
+            setTimeout(() => crearChispas(
+                numeroAleatorio(window.innerWidth * .10, window.innerWidth * .90),
+                numeroAleatorio(window.innerHeight * .72, window.innerHeight * .94),
+                chispazos
+            ), j * 100);
+        }
+        iluminarDedicatoria(rojo ? "rojo" : "dorado");
+    }
+
+    function iniciarLluviaPetalosDedicatoria() {
+        let activos = true;
+        crearPetalos(esMovil() ? 32 : 42);
+        const intervalo = setInterval(() => {
+            if (!activos || !escenas.dedicatoria?.classList.contains("activa")) return;
+            crearPetalos(esMovil() ? 18 : 24);
+        }, 1500);
+        return () => { activos = false; clearInterval(intervalo); };
+    }
+
+    async function escribirParrafoDedicatoria(texto, clase="") {
+        const p=document.createElement("p"); if(clase) p.className=clase; textoDedicatoria.appendChild(p);
+        await escribirTexto(p,texto,esMovil()?20:27);
+    }
+
+    async function iniciarDedicatoria() {
+        if (!textoDedicatoria) return;
+        textoDedicatoria.innerHTML = "";
+        btnDedicatoriaFinal?.classList.remove("visible");
+
+        const detenerPetalos = iniciarLluviaPetalosDedicatoria();
+        let corazonesLanzados = 0;
+        const maxCorazonesDorados = 200;
+
+        const lanzarOleadaDorada = (cantidad = 14, explosion = false) => {
+            const restantes = maxCorazonesDorados - corazonesLanzados;
+            if (restantes <= 0) return;
+            const reales = Math.min(cantidad, restantes);
+            lanzarCorazonesDedicatoria("dorado", reales, explosion);
+            corazonesLanzados += reales;
+        };
+
+        lanzarOleadaDorada(20, true);
+        const oleadas = setInterval(() => lanzarOleadaDorada(esMovil() ? 11 : 14, Math.random() > .62), 760);
+
+        await escribirParrafoDedicatoria(`No sé qué lugar voy a ocupar en tu vida,
+pero ojalá algún día entiendas
+que yo no llegué para jugar contigo.`);
+        await esperar(160);
+
+        await escribirParrafoDedicatoria(`Llegué sin buscarte,
+y poco a poco, sin darme cuenta,
+terminaste convirtiéndote en alguien
+que realmente me importa.`);
+        lanzarOleadaDorada(28, true);
+        await esperar(160);
+
+        await escribirParrafoDedicatoria(`Y ahora hay una parte de mí
+que sonríe simplemente porque existes.`);
+        lanzarOleadaDorada(34, true);
+        await esperar(160);
+
+        await escribirParrafoDedicatoria(`No sé qué nos depare el tiempo…
+pero si algún día te preguntas qué siento,
+ojalá pudiera prestarte por un momento mi corazón,
+para que entendieras cuánto te quiero. ❤️`, "parrafo-te-quiero");
+
+        clearInterval(oleadas);
+        if (corazonesLanzados < maxCorazonesDorados) {
+            lanzarOleadaDorada(maxCorazonesDorados - corazonesLanzados, true);
+        }
+
+        // Al llegar a “te quiero”, el dorado da paso a varias explosiones rojas.
+        for (let o = 0; o < 6; o++) {
+            setTimeout(() => lanzarCorazonesDedicatoria("rojo", esMovil() ? 28 : 34, true), o * 310);
+        }
+
+        await esperar(3000);
+        detenerPetalos();
+        btnDedicatoriaFinal?.classList.add("visible");
+    }
+
+    if (btnDedicatoriaFinal) {
+        btnDedicatoriaFinal.addEventListener("click", async()=>{
+            btnDedicatoriaFinal.disabled=true;
+            await cambiarEscena(escenas.dedicatoria, escenas.final, 7);
+            iniciarFinal();
+        });
+    }
 
     /* =====================================================
        ESCENA FINAL
     ===================================================== */
 
     async function iniciarFinal() {
-
-        finalRespondido = false;
-
-        preguntaFinal
-            ?.classList.remove(
-                "visible"
-            );
-
-        respuestaFinal
-            ?.classList.remove(
-                "visible"
-            );
-
-        btnRepetir
-            ?.classList.remove(
-                "visible"
-            );
-
-        if (btnSi) {
-            btnSi.disabled = false;
-        }
-
-        if (btnPoquito) {
-            btnPoquito.disabled =
-                false;
-        }
-
-        /*
-           Pétalos al aparecer los tulipanes.
-
-           El movimiento continuo de
-           recursos/tulipanes.png lo controla
-           el CSS que acabas de reemplazar.
-        */
-
-        crearPetalos(
-            esMovil()
-                ? 20
-                : 26
-        );
-
-        await esperar(350);
-
-        /*
-           Destellos alrededor de los
-           tulipanes del final.
-        */
-
-        const tulipanesFinales =
-            document.querySelector(
-                ".final-tulipanes"
-            );
-
-        if (tulipanesFinales) {
-
-            const rect =
-                tulipanesFinales
-                    .getBoundingClientRect();
-
-            crearChispas(
-                rect.left +
-                rect.width / 2,
-
-                rect.top +
-                rect.height / 2,
-
-                esMovil()
-                    ? 15
-                    : 20
-            );
-        }
-
-        await esperar(1150);
-
-        preguntaFinal
-            ?.classList.add(
-                "visible"
-            );
+        [finalLinea1,finalLinea2,finalFirma1,finalFirma2].forEach(el=>{if(el)el.textContent=""});
+        corazonFirma?.classList.remove("subir"); btnRepetir?.classList.remove("visible"); preguntaFinal?.classList.remove("visible"); respuestaFinal?.classList.remove("visible"); if(respuestaFinal) respuestaFinal.textContent=""; finalRespondido=false; if(btnSi) btnSi.disabled=false; if(btnPoquito) btnPoquito.disabled=false;
+        crearPetalos(esMovil()?18:24);
+        await esperar(1000);
+        await escribirTexto(finalLinea1,"Solo quería que lo supieras.",esMovil()?31:38);
+        await esperar(280);
+        await escribirTexto(finalLinea2,"Y si todo esto logró sacarte aunque sea una sonrisa, entonces valió completamente la pena. 💛",esMovil()?25:32);
+        await esperar(300);
+        await escribirTexto(finalFirma1,"Con cariño,",38);
+        await esperar(180);
+        await escribirTexto(finalFirma2,"César ❤️",45);
+        await esperar(2000); corazonFirma?.classList.add("subir");
+        await esperar(1200); preguntaFinal?.classList.add("visible");
     }
-
 
     /* =====================================================
        RESPUESTAS FINALES

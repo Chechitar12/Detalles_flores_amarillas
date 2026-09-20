@@ -539,18 +539,11 @@
 
             <div class="contenido contenido-juego">
 
-                <p class="etiqueta">
-                    UN PEQUEÑO RETO
-                </p>
-
-
-                <h2>
-                    Encuentra el tulipán diferente.
-                </h2>
-
+                <h2>A ver esos ojitos… 🌷</h2>
 
                 <p class="instruccion-juego">
-                    Hay uno que no es exactamente igual a los demás 👀
+                    Entre estos tulipanes hay uno diferente 🌷<br>
+                    No vale rendirse tan rápido 😌
                 </p>
 
 
@@ -571,7 +564,7 @@
                     class="boton boton-continuar oculto"
                     type="button"
                 >
-                    Lo encontré →
+                    Tengo algo más para ti ✨
                 </button>
 
             </div>
@@ -624,7 +617,7 @@
                     class="boton boton-continuar"
                     type="button"
                 >
-                    Una última cosa →
+                    Seguir descubriendo ✨
                 </button>
 
             </div>
@@ -692,11 +685,7 @@
                     </div>
 
 
-                    <div
-                        id="btnAlFinal"
-                        class="elemento-espera"
-                        aria-hidden="true"
-                    ></div>
+                    <button id="btnAlFinal" class="boton boton-continuar boton-final-foto elemento-espera" type="button">Seguir descubriendo ✨</button>
 
                 </div>
 
@@ -754,7 +743,7 @@
                         class="boton boton-continuar boton-final-foto elemento-espera"
                         type="button"
                     >
-                        Continuar →
+                        Quiero decirte algo… ❤️
                     </button>
 
                 </div>
@@ -764,8 +753,21 @@
         </section>
 
 
+
         <!-- =================================================
-             9. FINAL
+             9. DEDICATORIA
+        ================================================== -->
+        <section id="escenaDedicatoria" class="escena escena-dedicatoria">
+            <div class="dedicatoria-ambiente" aria-hidden="true"></div>
+            <div class="contenido contenido-dedicatoria">
+                <h2 class="titulo-dedicatoria">Algo que quería decirte…</h2>
+                <div id="textoDedicatoria" class="texto-dedicatoria"></div>
+                <button id="btnDedicatoriaFinal" class="boton boton-continuar elemento-espera" type="button">Un último detalle ✨</button>
+            </div>
+        </section>
+
+        <!-- =================================================
+             10. FINAL
         ================================================== -->
 
         <section
@@ -800,78 +802,22 @@
 
 
                 <div class="mensaje-final">
-
-                    <p>
-                        Quizás no tengo mucho más que decir…
-                    </p>
-
-                    <p>
-                        Solo quería regalarte un pequeño momento bonito y recordarte,
-                        a mi manera, que eres alguien especial para mí.
-                    </p>
-
-
+                    <p id="finalLinea1" class="final-linea"></p>
+                    <p id="finalLinea2" class="final-linea"></p>
                     <div class="firma-final">
-
-                        <span>
-                            Con cariño,
-                        </span>
-
-                        <strong>
-                            César ❤️
-                        </strong>
-
+                        <span id="finalFirma1"></span>
+                        <strong id="finalFirma2"></strong>
+                        <span id="corazonFirma" class="corazon-firma" aria-hidden="true">❤️</span>
                     </div>
-
-
-                    <div
-                        id="preguntaFinal"
-                        class="pregunta-final"
-                    >
-
-                        <h2>
-                            ¿Te gustó la sorpresa? 👀
-                        </h2>
-
-
+                    <div id="preguntaFinal" class="pregunta-final">
+                        <h2>¿Te gustó la sorpresa? 👀</h2>
                         <div class="opciones-finales">
-
-                            <button
-                                id="btnSi"
-                                class="boton"
-                                type="button"
-                            >
-                                Sí 🥰
-                            </button>
-
-
-                            <button
-                                id="btnPoquito"
-                                class="boton"
-                                type="button"
-                            >
-                                Un poquito 😌
-                            </button>
-
+                            <button id="btnSi" class="boton" type="button">Sí 🥰</button>
+                            <button id="btnPoquito" class="boton" type="button">Un poquito 😌</button>
                         </div>
-
-
-                        <p
-                            id="respuestaFinal"
-                            class="respuesta-final"
-                        ></p>
-
-
-                        <button
-                            id="btnRepetir"
-                            class="boton-repetir"
-                            type="button"
-                        >
-                            ↻ VOLVER A VER 
-                        </button>
-
+                        <p id="respuestaFinal" class="respuesta-final"></p>
                     </div>
-
+                    <button id="btnRepetir" class="boton-repetir" type="button">Volver a ver ↻</button>
                 </div>
 
             </div>

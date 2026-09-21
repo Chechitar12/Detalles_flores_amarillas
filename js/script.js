@@ -1353,7 +1353,7 @@ document.addEventListener("DOMContentLoaded", () => {
         temporizadorRecuerdo =
             setTimeout(
                 siguienteRecuerdo,
-                Math.min(12000, Math.max(8000, 8000 + (longitud - 70) * 45))
+                Math.min(10000, Math.max(7000, 7000 + (longitud - 70) * 35))
             );
     }
 
